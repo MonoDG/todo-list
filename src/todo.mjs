@@ -1,5 +1,5 @@
 import { format } from 'date-fns'
-import { DEFAULT_DATE_FORMAT } from './constants';
+import { DEFAULT_DATE_FORMAT } from './constants.mjs';
 
 export default class Todo {
     #_title;
@@ -9,7 +9,7 @@ export default class Todo {
     #_createdDate;
     #_lastUpdatedDate;
 
-    constructor(title, description, dueDate, priority) {
+    constructor(title, description, dueDate = new Date(), priority = 1) {
         this.#_title = title;
         this.#_description = description;
         this.#_dueDate = dueDate;

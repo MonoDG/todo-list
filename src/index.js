@@ -1,3 +1,5 @@
 import Todo from './todo.mjs';
 
-console.log(myTodo.toString());
+const testTodo = new Todo();
+
+console.log(testTodo.toString());
