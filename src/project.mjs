@@ -19,6 +19,14 @@ export default class Project {
     set name(value) { this.#_name = value; };
     set todolist(value) { this.#_todolist = value; };
 
+    addTodo(todo) {
+        this.#_todolist.push(todo);
+    }
+
+    addTodos(todos) {
+        this.#_todolist = this.#_todolist.concat(todos);
+    }
+
     printTodos() {
         let todosOutput = "";
         this.#_todolist.forEach(todo => todosOutput += todo.toString() + "\n\n");
