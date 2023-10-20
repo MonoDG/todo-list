@@ -1,4 +1,5 @@
 import { format } from 'date-fns'
+import { DEFAULT_DATE_FORMAT } from './constants';
 
 export default class Todo {
     #_title;
@@ -14,7 +15,7 @@ export default class Todo {
         this.#_dueDate = dueDate;
         this.#_priority = priority;
 
-        this.#_createdDate = format(new Date(), 'yyyy-MM-dd HH:mm:ss');
+        this.#_createdDate = new Date();
         this.#_lastUpdatedDate = this.#_createdDate;
     }
 
@@ -34,10 +35,10 @@ export default class Todo {
     toString() {
         return (`Title: ${this.#_title}` +
             `\nDescription: ${this.#_description}` +
-            `\nDue Date: ${this.#_dueDate}` +
+            `\nDue Date: ${format(this.#_dueDate, DEFAULT_DATE_FORMAT)}` +
             `\nPriority: ${this.#_priority}` +
-            `\nCreated Date: ${this.#_createdDate}` +
-            `\nLast Updated Date: ${this.#_lastUpdatedDate}`
+            `\nCreated Date: ${format(this.#_createdDate, DEFAULT_DATE_FORMAT)}` +
+            `\nLast Updated Date: ${format(this.#_lastUpdatedDate, DEFAULT_DATE_FORMAT)}`
         )
     }
 }
