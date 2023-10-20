@@ -1,3 +1,4 @@
+import './style.css';
 import Todo from './todo.mjs';
 import Project from './project.mjs';
 import { TODO_STATE } from './constants.mjs';
