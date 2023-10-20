@@ -2,6 +2,13 @@
 
 :root {
   --navbar-height: 40px;
+  --blue-gray: #7393B3;
+  --navy-blue: #000080;
+  --steel-blue: #4682B4;
+  --charcoal: #36454F;
+  --jet-black: #343434;
+  --matte-black: #28282B;
+  --platinum: #E5E4E2;
 }
 
 * {
@@ -14,7 +21,19 @@ body {
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
+nav,
+footer,
+aside {
+  background-color: var(--jet-black);
+  color: var(--platinum);
+}
+
+main {
+  background-color: var(--matte-black);
+}
+
 .btn {
+  color: inherit;
   background-color: inherit;
   border: none;
   display: flex;
@@ -53,7 +72,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: goldenrod;
   padding-right: 20px;
 }
 
@@ -65,7 +83,6 @@ body {
 
 .sidebar {
   grid-area: sidebar;
-  background-color: steelblue;
   transform: translateX(0%);
   transition: 200ms ease;
   position: relative;
@@ -106,7 +123,6 @@ body {
 
 .main {
   grid-area: main-start / sidebar-start / main-end / main-end;
-  background-color: antiquewhite;
 }
 
 .footer {
@@ -114,7 +130,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: seagreen;
   font-weight: 800;
 }
 
