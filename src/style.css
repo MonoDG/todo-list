@@ -10,6 +10,16 @@ body {
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
+#btn-collapse-sidebar {
+  background-color: inherit;
+  border: none;
+  border-right: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+}
+
 .material-symbols-outlined {
   font-variation-settings:
     'FILL' 1,
@@ -36,18 +46,24 @@ body {
   background-color: goldenrod;
 }
 
+.navbar-start-items,
+.navbar-end-items {
+  display: flex;
+  justify-content: center;
+  align-self: stretch;
+}
+
 .sidebar {
   grid-area: sidebar;
   background-color: steelblue;
-  transform: translateX(-100%);
+  transform: translateX(0%);
   transition: 200ms ease;
   position: relative;
   z-index: 1;
 }
 
-/* TODO remove and change for click event in navbar */
-.sidebar:hover {
-  transform: translateX(0%);
+.sidebar.sidebar-collapsed {
+  transform: translateX(-100%);
 }
 
 .main {
@@ -81,8 +97,8 @@ body {
     overflow: auto;
   }
 
-  .sidebar:hover {
-    transform: none;
+  .sidebar.sidebar-collapsed {
     width: 0;
   }
+
 }

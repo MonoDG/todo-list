@@ -2,6 +2,9 @@ import './style.css';
 import Todo from './todo.mjs';
 import Project from './project.mjs';
 import { TODO_STATE } from './constants.mjs';
+import DOMHandler from './DOMHandler.mjs';
+
+DOMHandler();
 
 const myDefaultProject = new Project("Default");
 myDefaultProject.addTodo(new Todo("Create Todo class", "Description1"));
