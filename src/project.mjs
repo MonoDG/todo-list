@@ -27,6 +27,11 @@ export default class Project {
         this.#_todolist = this.#_todolist.concat(todos);
     }
 
+    removeTodo(id) {
+        let indexToRemove = this.#_todolist.findIndex(todo => todo.id === id);
+        if (indexToRemove !== -1) { this.#_todolist.splice(indexToRemove, 1); };
+    }
+
     printTodos() {
         let todosOutput = "";
         this.#_todolist.forEach(todo => todosOutput += todo.toString() + "\n\n");
