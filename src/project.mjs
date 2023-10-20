@@ -1,16 +1,19 @@
 export default class Project {
+    #_id;
     #_name;
     #_todolist;
     #_createdDate;
     #_lastUpdatedDate;
 
     constructor(name) {
+        this.#_id = crypto.randomUUID();
         this.#_name = name;
         this.#_todolist = new Array();
         this.#_createdDate = new Date();
         this.#_lastUpdatedDate = this.#_createdDate;
     }
 
+    get id() { return this.#_id; };
     get name() { return this.#_name; };
     get todolist() { return this.#_todolist; };
     get createdDate() { return this.#_createdDate; };
