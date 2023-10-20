@@ -20,15 +20,27 @@ function setupSidebar() {
     sidebarBody.appendChild(projectList);
 
     // First List Item is to add a new project
-    const addNewProjectLi = document.createElement("li");
+    const projectsHeaderLi = document.createElement("li");
+    projectsHeaderLi.classList.add("bold");
+
+    const projectHeaderTitle = document.createElement("span");
     const addNewProjectBtn = document.createElement("button");
+    const addProjectIcon = document.createElement("span");
+
+    addProjectIcon.classList.add("material-symbols-outlined");
+    addProjectIcon.textContent = "add";
+
+    projectHeaderTitle.textContent = "Projects"
 
     addNewProjectBtn.addEventListener("click", createNewProject);
     addNewProjectBtn.setAttribute("id", "btn-create-project");
-    addNewProjectBtn.classList.add("btn-create-project");
-    addNewProjectBtn.textContent = "+ New Project";
-    addNewProjectLi.appendChild(addNewProjectBtn);
-    projectList.appendChild(addNewProjectLi);
+    addNewProjectBtn.classList.add("btn");
+    addNewProjectBtn.appendChild(addProjectIcon);
+
+    projectsHeaderLi.appendChild(projectHeaderTitle);
+    projectsHeaderLi.appendChild(addNewProjectBtn);
+
+    projectList.appendChild(projectsHeaderLi);
 
 }
 
