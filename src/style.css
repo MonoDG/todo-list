@@ -19,6 +19,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: goldenrod;
 }
 
 .sidebar {
@@ -37,6 +38,7 @@
 
 .main {
   grid-area: sidebar-start / sidebar-start / main-end / main-end;
+  background-color: antiquewhite;
 }
 
 .footer {
@@ -44,4 +46,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: seagreen;
+}
+
+/* Desktop */
+@media only screen and (min-width: 768px) {
+  .grid-container {
+    grid-template-columns: auto 1fr;
+  }
+
+  .main {
+    grid-area: main;
+  }
+
+  .sidebar {
+    transform: none;
+    position: static;
+    width: 250px;
+    overflow: auto;
+  }
+
+  .sidebar:hover {
+    transform: none;
+    width: 0;
+  }
 }
