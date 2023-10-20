@@ -366,7 +366,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _todo_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todo.mjs */ \"./src/todo.mjs\");\n\n\nconst testTodo = new _todo_mjs__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\n\nconsole.log(testTodo.toString());\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _todo_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todo.mjs */ \"./src/todo.mjs\");\n/* harmony import */ var _project_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./project.mjs */ \"./src/project.mjs\");\n\n\n\nconst myDefaultProject = new _project_mjs__WEBPACK_IMPORTED_MODULE_1__[\"default\"](\"Default\");\nmyDefaultProject.todolist.push(new _todo_mjs__WEBPACK_IMPORTED_MODULE_0__[\"default\"](\"Create Todo class\", \"Description1\"), new _todo_mjs__WEBPACK_IMPORTED_MODULE_0__[\"default\"](\"Create Project class\", \"Description2\"));\nmyDefaultProject.printTodos();\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
 
 /***/ }),
 
@@ -387,6 +387,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   DEFAULT_DATE_FORMAT: () => (/* binding */ DEFAULT_DATE_FORMAT)\n/* harmony export */ });\nconst DEFAULT_DATE_FORMAT = 'yyyy-MM-dd HH:mm:ss';\n\n\n\n//# sourceURL=webpack://todo-list/./src/constants.mjs?");
+
+/***/ }),
+
+/***/ "./src/project.mjs":
+/*!*************************!*\
+  !*** ./src/project.mjs ***!
+  \*************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Project)\n/* harmony export */ });\nclass Project {\n    #_name;\n    #_todolist;\n    #_createdDate;\n    #_lastUpdatedDate;\n\n    constructor(name) {\n        this.#_name = name;\n        this.#_todolist = new Array();\n        this.#_createdDate = new Date();\n        this.#_lastUpdatedDate = this.#_createdDate;\n    }\n\n    get name() { return this.#_name; };\n    get todolist() { return this.#_todolist; };\n    get createdDate() { return this.#_createdDate; };\n    get lastUpdatedDate() { return this.#_lastUpdatedDate; };\n\n    set name(value) { this.#_name = value; };\n    set todolist(value) { this.#_todolist = value; };\n\n    printTodos() {\n        let todosOutput = \"\";\n        this.#_todolist.forEach(todo => todosOutput += todo.toString() + \"\\n\\n\");\n        console.log(todosOutput);\n    }\n}\n\n//# sourceURL=webpack://todo-list/./src/project.mjs?");
 
 /***/ }),
 
