@@ -6,8 +6,8 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-rows: 50px auto 50px;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 50px auto 30px;
   grid-template-areas: "navbar navbar"
     "sidebar main"
     "footer footer";
@@ -23,6 +23,15 @@
 
 .sidebar {
   grid-area: sidebar;
+  background-color: steelblue;
+  width: 250px;
+  transition: all 0.2s;
+  overflow: auto;
+}
+
+/* TODO remove and change for click event in navbar */
+.sidebar:hover {
+  width: 0;
 }
 
 .main {
