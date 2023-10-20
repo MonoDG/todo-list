@@ -1,29 +1,23 @@
 const sidebar = document.querySelector(".sidebar");
-const btnCollapseSidebar = document.querySelector("#btn-collapse-sidebar");
+const btnOpenSidebar = document.querySelector("#btn-open-sidebar");
+const btnCloseSidebar = document.querySelector("#btn-close-sidebar");
 const main = document.querySelector(".main");
 
-function toggleSidebar() {
-    if (sidebar.classList.contains("sidebar-collapsed")) {
-        sidebar.classList.remove("sidebar-collapsed");
-        setSidebarIconInMobileDisplay("close");
-    } else {
-        sidebar.classList.add("sidebar-collapsed");
-        setSidebarIconInMobileDisplay("menu");
-    }
+function openSidebar() {
+    sidebar.classList.remove("sidebar-collapsed");
 }
 
-// If mobile display only, toggle hamburguer icon for an X icon
-function setSidebarIconInMobileDisplay(icon) {
-    if (getComputedStyle(sidebar).position === "relative") {
-        btnCollapseSidebar.firstChild.textContent = icon;
-    }
+function closeSidebar() {
+    sidebar.classList.add("sidebar-collapsed");
 }
 
 function setupSidebar() {
+    const sidebarBody = document.querySelector(".sidebar-body");
+
     const projectList = document.createElement("ul");
     projectList.setAttribute("id", "projects");
     projectList.classList.add("projects");
-    sidebar.appendChild(projectList);
+    sidebarBody.appendChild(projectList);
 
     // First List Item is to add a new project
     const addNewProjectLi = document.createElement("li");
@@ -35,19 +29,20 @@ function setupSidebar() {
     addNewProjectBtn.textContent = "+ New Project";
     addNewProjectLi.appendChild(addNewProjectBtn);
     projectList.appendChild(addNewProjectLi);
+
 }
 
 
 function DOMHandler() {
-    btnCollapseSidebar.addEventListener("click", toggleSidebar);
+    btnOpenSidebar.addEventListener("click", openSidebar);
+    btnCloseSidebar.addEventListener("click", closeSidebar);
     main.addEventListener("click", () => {
         if (getComputedStyle(sidebar).position === "relative" &&
             !sidebar.classList.contains("sidebar-collapsed")) {
-            toggleSidebar();
+            closeSidebar();
         }
     });
     setupSidebar();
-    toggleSidebar();
 }
 
 function createNewProject() {
