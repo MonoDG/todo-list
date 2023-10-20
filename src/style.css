@@ -99,24 +99,4 @@ body {
 }
 
 /* Desktop */
-@media only screen and (min-width: 768px) {
-  /* .grid-container {
-    grid-template-columns: auto 1fr;
-  }
-
-  .main {
-    grid-area: main;
-  } */
-
-  /* .sidebar {
-    transform: none;
-    position: static;
-    width: 250px;
-    overflow: auto;
-  }
-
-  .sidebar.sidebar-collapsed {
-    width: 0;
-  } */
-
-}
+/* @media only screen and (min-width: 768px) {} */
