@@ -366,7 +366,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _todo_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todo.mjs */ \"./src/todo.mjs\");\n\n\nconsole.log(myTodo.toString());\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _todo_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todo.mjs */ \"./src/todo.mjs\");\n\n\nconst testTodo = new _todo_mjs__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\n\nconsole.log(testTodo.toString());\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
 
 /***/ }),
 
@@ -380,13 +380,23 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/constants.mjs":
+/*!***************************!*\
+  !*** ./src/constants.mjs ***!
+  \***************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   DEFAULT_DATE_FORMAT: () => (/* binding */ DEFAULT_DATE_FORMAT)\n/* harmony export */ });\nconst DEFAULT_DATE_FORMAT = 'yyyy-MM-dd HH:mm:ss';\n\n\n\n//# sourceURL=webpack://todo-list/./src/constants.mjs?");
+
+/***/ }),
+
 /***/ "./src/todo.mjs":
 /*!**********************!*\
   !*** ./src/todo.mjs ***!
   \**********************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Todo)\n/* harmony export */ });\n/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! date-fns */ \"./node_modules/date-fns/esm/format/index.js\");\nObject(function webpackMissingModule() { var e = new Error(\"Cannot find module './constants'\"); e.code = 'MODULE_NOT_FOUND'; throw e; }());\n\n\n\nclass Todo {\n    #_title;\n    #_description;\n    #_dueDate;\n    #_priority;\n    #_createdDate;\n    #_lastUpdatedDate;\n\n    constructor(title, description, dueDate, priority) {\n        this.#_title = title;\n        this.#_description = description;\n        this.#_dueDate = dueDate;\n        this.#_priority = priority;\n\n        this.#_createdDate = new Date();\n        this.#_lastUpdatedDate = this.#_createdDate;\n    }\n\n    get title() { return this.#_title; };\n    get description() { return this.#_description; }\n    get dueDate() { return this.#_dueDate; }\n    get priority() { return this.#_priority; }\n    get createdDate() { return this.#_createdDate; }\n    get lastUpdatedDate() { return this.#_lastUpdatedDate }\n\n    set title(value) { this.#_title = value; }\n    set description(value) { this.#_description = value; }\n    set dueDate(value) { this.#_dueDate = value; }\n    set priority(value) { this.#_priority = value; }\n    set lastUpdatedDate(value) { this.#_lastUpdatedDate = value; }\n\n    toString() {\n        return (`Title: ${this.#_title}` +\n            `\\nDescription: ${this.#_description}` +\n            `\\nDue Date: ${(0,date_fns__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(this.#_dueDate, Object(function webpackMissingModule() { var e = new Error(\"Cannot find module './constants'\"); e.code = 'MODULE_NOT_FOUND'; throw e; }()))}` +\n            `\\nPriority: ${this.#_priority}` +\n            `\\nCreated Date: ${(0,date_fns__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(this.#_createdDate, Object(function webpackMissingModule() { var e = new Error(\"Cannot find module './constants'\"); e.code = 'MODULE_NOT_FOUND'; throw e; }()))}` +\n            `\\nLast Updated Date: ${(0,date_fns__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(this.#_lastUpdatedDate, Object(function webpackMissingModule() { var e = new Error(\"Cannot find module './constants'\"); e.code = 'MODULE_NOT_FOUND'; throw e; }()))}`\n        )\n    }\n}\n\n//# sourceURL=webpack://todo-list/./src/todo.mjs?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Todo)\n/* harmony export */ });\n/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! date-fns */ \"./node_modules/date-fns/esm/format/index.js\");\n/* harmony import */ var _constants_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./constants.mjs */ \"./src/constants.mjs\");\n\n\n\nclass Todo {\n    #_title;\n    #_description;\n    #_dueDate;\n    #_priority;\n    #_createdDate;\n    #_lastUpdatedDate;\n\n    constructor(title, description, dueDate = new Date(), priority = 1) {\n        this.#_title = title;\n        this.#_description = description;\n        this.#_dueDate = dueDate;\n        this.#_priority = priority;\n\n        this.#_createdDate = new Date();\n        this.#_lastUpdatedDate = this.#_createdDate;\n    }\n\n    get title() { return this.#_title; };\n    get description() { return this.#_description; }\n    get dueDate() { return this.#_dueDate; }\n    get priority() { return this.#_priority; }\n    get createdDate() { return this.#_createdDate; }\n    get lastUpdatedDate() { return this.#_lastUpdatedDate }\n\n    set title(value) { this.#_title = value; }\n    set description(value) { this.#_description = value; }\n    set dueDate(value) { this.#_dueDate = value; }\n    set priority(value) { this.#_priority = value; }\n    set lastUpdatedDate(value) { this.#_lastUpdatedDate = value; }\n\n    toString() {\n        return (`Title: ${this.#_title}` +\n            `\\nDescription: ${this.#_description}` +\n            `\\nDue Date: ${(0,date_fns__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(this.#_dueDate, _constants_mjs__WEBPACK_IMPORTED_MODULE_0__.DEFAULT_DATE_FORMAT)}` +\n            `\\nPriority: ${this.#_priority}` +\n            `\\nCreated Date: ${(0,date_fns__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(this.#_createdDate, _constants_mjs__WEBPACK_IMPORTED_MODULE_0__.DEFAULT_DATE_FORMAT)}` +\n            `\\nLast Updated Date: ${(0,date_fns__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(this.#_lastUpdatedDate, _constants_mjs__WEBPACK_IMPORTED_MODULE_0__.DEFAULT_DATE_FORMAT)}`\n        )\n    }\n}\n\n//# sourceURL=webpack://todo-list/./src/todo.mjs?");
 
 /***/ })
 
