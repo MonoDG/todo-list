@@ -2,6 +2,8 @@ const sidebar = document.querySelector(".sidebar");
 const btnOpenSidebar = document.querySelector("#btn-open-sidebar");
 const btnCloseSidebar = document.querySelector("#btn-close-sidebar");
 const main = document.querySelector(".main");
+const newProjectDialog = document.querySelector("#new-project-dialog");
+const closeBtnNewProjectDialog = document.querySelector("#new-project-dialog button");
 
 function openSidebar() {
     sidebar.classList.remove("sidebar-collapsed");
@@ -55,10 +57,18 @@ function DOMHandler() {
         }
     });
     setupSidebar();
+
+    newProjectDialog.addEventListener("click", e => {
+        if (e.target.id === "new-project-dialog") {
+            newProjectDialog.close();
+        }
+    })
+    closeBtnNewProjectDialog.addEventListener("click", () => newProjectDialog.close());
 }
 
 function createNewProject() {
     console.log("Creating new project");
+    newProjectDialog.showModal();
 }
 
 function addProject(project) {
