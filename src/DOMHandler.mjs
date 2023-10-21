@@ -93,9 +93,13 @@ function createNewProject() {
 function addProject(project) {
     const projectList = document.querySelector(".projects");
     const projectListItem = document.createElement("li");
+    const projectListItemButton = document.createElement("button");
 
-    projectListItem.setAttribute("id", project.id);
-    projectListItem.textContent = project.name;
+    projectListItemButton.classList.add("btn");
+    projectListItemButton.setAttribute("id", project.id);
+    projectListItemButton.textContent = project.name;
+
+    projectListItem.appendChild(projectListItemButton);
     projectList.appendChild(projectListItem);
 }
 
