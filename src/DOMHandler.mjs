@@ -1,9 +1,12 @@
+import Project from './project.mjs';
+
 const sidebar = document.querySelector(".sidebar");
 const btnOpenSidebar = document.querySelector("#btn-open-sidebar");
 const btnCloseSidebar = document.querySelector("#btn-close-sidebar");
 const main = document.querySelector(".main");
 const newProjectDialog = document.querySelector("#new-project-dialog");
-const closeBtnNewProjectDialog = document.querySelector("#new-project-dialog button");
+const closeBtnNewProjectDialog = document.querySelector("#close-new-project-dialog");
+const confirmBtnNewProjectDialog = document.querySelector("#confirm-new-project-dialog");
 
 function openSidebar() {
     sidebar.classList.remove("sidebar-collapsed");
@@ -61,19 +64,36 @@ function DOMHandler() {
     newProjectDialog.addEventListener("click", e => {
         if (e.target.id === "new-project-dialog") {
             newProjectDialog.close();
+            resetNewProjectDialog();
         }
     })
-    closeBtnNewProjectDialog.addEventListener("click", () => newProjectDialog.close());
+    closeBtnNewProjectDialog.addEventListener("click", () => {
+        newProjectDialog.close();
+        resetNewProjectDialog();
+    });
+
+    confirmBtnNewProjectDialog.addEventListener("click", () => {
+        const newProjectName = document.querySelector("#project-name");
+        if (newProjectName.value !== "") {
+            const newProject = new Project(newProjectName.value);
+            addProject(newProject);
+        }
+    });
+}
+
+function resetNewProjectDialog() {
+    const newProjectName = document.querySelector("#project-name");
+    newProjectName.value = "";
 }
 
 function createNewProject() {
-    console.log("Creating new project");
     newProjectDialog.showModal();
 }
 
 function addProject(project) {
     const projectList = document.querySelector(".projects");
     const projectListItem = document.createElement("li");
+
     projectListItem.setAttribute("id", project.id);
     projectListItem.textContent = project.name;
     projectList.appendChild(projectListItem);

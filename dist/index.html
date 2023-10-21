@@ -36,8 +36,14 @@
     <footer class="footer">Made with &#129505; by MonoDG</footer>
     <dialog id="new-project-dialog">
       <form method="dialog" id="form-add-new-project">
-        <button autofocus>Close</button>
-        <p>This modal dialog has a groovy backdrop!</p>
+        <fieldset>
+          <label for="project-name">Name:</label>
+          <input type="text" name="project-name" id="project-name">
+        </fieldset>
+        <div>
+          <button id="close-new-project-dialog" autofocus>Close</button>
+          <button id="confirm-new-project-dialog">Confirm</button>
+        </div>
       </form>
     </dialog>
   </div>
