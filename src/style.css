@@ -56,7 +56,7 @@ main {
 }
 
 #project-name {
-  max-width: fit-content;
+  width: 100%;
 }
 
 .btn {
