@@ -160,10 +160,14 @@ main {
 .sidebar ul li+li button.btn {
   font-size: 1rem;
   width: 100%;
+  max-width: 100%;
   justify-content: left;
   border-radius: unset;
   height: calc(var(--navbar-height) - 10px);
   padding: 5px 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .sidebar ul li+li button.btn:hover {
