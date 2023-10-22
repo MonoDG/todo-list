@@ -131,9 +131,8 @@ main {
   padding-right: 20px;
 }
 
-/* TODO change to -100% */
 .sidebar.sidebar-collapsed {
-  transform: translateX(0%);
+  transform: translateX(-100%);
 }
 
 .sidebar ul {
