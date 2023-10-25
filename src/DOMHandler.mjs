@@ -1,4 +1,5 @@
 import Project from './project.mjs';
+import ProjectComponent from './projectComponent.mjs';
 
 const sidebar = document.querySelector(".sidebar");
 const btnOpenSidebar = document.querySelector("#btn-open-sidebar");
@@ -180,7 +181,7 @@ function showProjectDetails(e) {
     // Clear project details section
     clearMainSection();
     // Create project details with current project
-    const currentProject = projects[e.target.id];
+    main.appendChild(new ProjectComponent(projects[e.target.getAttribute("data-id")]).node);
 }
 
 function clearMainSection() {

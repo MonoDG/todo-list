@@ -9,6 +9,8 @@
   --jet-black: #343434;
   --matte-black: #28282B;
   --platinum: #E5E4E2;
+  --mango: #F4BB44;
+  --jade: #00A36C;
 }
 
 * {
@@ -30,7 +32,67 @@ aside {
 
 main {
   background-color: var(--matte-black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+/* PROJECT CONTAINER */
+.project-container {
+  padding: 30px 0;
+  width: 50%;
+  font-size: 1rem;
+}
+
+.project-header {
+  display: flex;
+}
+
+.project-name-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.project-name-container div div {
+  display: flex;
+  gap: 10px;
+}
+
+.project-header input {
+  background-color: inherit;
+  color: var(--platinum);
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: 800;
+  padding: 2px 5px;
+}
+
+.project-header input.editable {
+  background-color: inherit;
+  outline: 1px solid white;
+}
+
+.project-header input:hover:not(.editable) {
+  background-color: rgba(255 255 255 / 0.1);
+}
+
+.project-header input:focus {
+  outline: 1px solid var(--blue-gray);
+}
+
+.project-header button {
+  padding: 7px 13px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* OTHER */
 
 #new-project-dialog,
 #edit-project-dialog {
@@ -215,5 +277,19 @@ main {
   background-color: rgb(255 255 255 / .1);
 }
 
+.confirm {
+  background-color: var(--platinum);
+  color: var(--matte-black);
+}
+
+.cancel {
+  background-color: var(--charcoal);
+  color: var(--platinum);
+}
+
 /* Desktop */
-/* @media only screen and (min-width: 768px) {} */
+@media only screen and (min-width: 768px) {
+  .project-header input {
+    width: fit-content;
+  }
+}

@@ -11,7 +11,7 @@ export default class Todo {
     #_createdDate;
     #_lastUpdatedDate;
 
-    constructor(title, description, dueDate = new Date(), priority = 1) {
+    constructor(title, description, dueDate, priority) {
         this.#_id = crypto.randomUUID();
         this.#_title = title;
         this.#_description = description;
