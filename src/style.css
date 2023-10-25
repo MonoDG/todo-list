@@ -32,30 +32,35 @@ main {
   background-color: var(--matte-black);
 }
 
-#new-project-dialog {
+#new-project-dialog,
+#edit-project-dialog {
   width: 280px;
   margin: auto;
   padding: 20px;
 }
 
-#new-project-dialog::backdrop {
+#new-project-dialog::backdrop,
+#edit-project-dialog::backdrop {
   background-color: gray;
   opacity: 0.75;
 }
 
-#new-project-dialog form {
+#new-project-dialog form,
+#edit-project-dialog form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-#new-project-dialog form fieldset {
+#new-project-dialog form fieldset,
+#edit-project-dialog form fieldset {
   border: none;
   display: flex;
   gap: 5px;
 }
 
-#project-name {
+#project-name,
+#edit-project-name {
   width: 100%;
 }
 
@@ -156,6 +161,11 @@ main {
   padding-right: 0;
 }
 
+.sidebar ul li+li:hover {
+  background-color: rgb(255 255 255 / .1);
+  border-radius: 5px;
+}
+
 .sidebar ul li+li button.btn {
   font-size: 1rem;
   width: 100%;
@@ -170,7 +180,19 @@ main {
 }
 
 .sidebar ul li+li button.btn:hover {
-  border-radius: 5px;
+  background-color: unset;
+  border-radius: unset;
+  /* border-radius: 5px; */
+}
+
+.sidebar ul li+li button.btn[data-id] {
+  width: unset;
+  flex-grow: 5;
+  max-width: 81%;
+}
+
+.sidebar ul li+li button.btn.project-edit {
+  flex: 1;
 }
 
 .main {

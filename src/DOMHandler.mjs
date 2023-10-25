@@ -5,8 +5,13 @@ const btnOpenSidebar = document.querySelector("#btn-open-sidebar");
 const btnCloseSidebar = document.querySelector("#btn-close-sidebar");
 const main = document.querySelector(".main");
 const newProjectDialog = document.querySelector("#new-project-dialog");
+const editProjectDialog = document.querySelector("#edit-project-dialog");
 const closeBtnNewProjectDialog = document.querySelector("#close-new-project-dialog");
 const confirmBtnNewProjectDialog = document.querySelector("#confirm-new-project-dialog");
+const closeBtnEditProjectDialog = document.querySelector("#close-edit-project-dialog");
+const confirmBtnEditProjectDialog = document.querySelector("#confirm-edit-project-dialog");
+
+const projects = {};
 
 function openSidebar() {
     sidebar.classList.remove("sidebar-collapsed");
@@ -66,7 +71,15 @@ function DOMHandler() {
             newProjectDialog.close();
             resetNewProjectDialog();
         }
+    });
+
+    editProjectDialog.addEventListener("click", e => {
+        if (e.target.id === "edit-project-dialog") {
+            editProjectDialog.close();
+            resetEditProjectDialog();
+        }
     })
+
     closeBtnNewProjectDialog.addEventListener("click", () => {
         newProjectDialog.close();
         resetNewProjectDialog();
@@ -79,11 +92,38 @@ function DOMHandler() {
             addProject(newProject);
         }
     });
+
+    closeBtnEditProjectDialog.addEventListener("click", () => {
+        editProjectDialog.close();
+        resetEditProjectDialog();
+    });
+
+    confirmBtnEditProjectDialog.addEventListener("click", () => {
+        const editProjectName = document.querySelector("#edit-project-name");
+        const editProjectId = document.querySelector("#edit-project-id");
+        if (editProjectName.value !== "") {
+            const project = projects[editProjectId.value];
+            project.name = editProjectName.value;
+
+            const btnProject = document.querySelector(`button[data-id="${project.id}"]`);
+            btnProject.textContent = project.name;
+        }
+    });
+
+    const myDefaultProject = new Project("Default");
+    addProject(myDefaultProject);
 }
 
 function resetNewProjectDialog() {
     const newProjectName = document.querySelector("#project-name");
     newProjectName.value = "";
+}
+
+function resetEditProjectDialog() {
+    const editProjectName = document.querySelector("#edit-project-name");
+    const editProjectId = document.querySelector("#edit-project-id");
+    editProjectName.value = "";
+    editProjectId.value = "";
 }
 
 function createNewProject() {
@@ -96,15 +136,55 @@ function addProject(project) {
     const projectListItemButton = document.createElement("button");
 
     projectListItemButton.classList.add("btn");
-    projectListItemButton.setAttribute("id", project.id);
+    projectListItemButton.setAttribute("data-id", project.id);
     projectListItemButton.textContent = project.name;
 
+    // Add button event handler to see project details
+    projectListItemButton.addEventListener("click", showProjectDetails);
+
+    // Edit project button
+    const projectEditButton = document.createElement("button");
+    projectEditButton.classList.add("btn");
+    projectEditButton.classList.add("project-edit");
+    projectEditButton.setAttribute("data-id", project.id);
+
+    const editIcon = document.createElement("span");
+    editIcon.classList.add("material-symbols-outlined");
+    editIcon.textContent = "edit";
+
+    projectEditButton.addEventListener("click", showEditProjectDialog);
+
+    projectEditButton.appendChild(editIcon);
+
     projectListItem.appendChild(projectListItemButton);
+    projectListItem.appendChild(projectEditButton);
     projectList.appendChild(projectListItem);
+
+    projects[project.id] = project;
 }
 
 function addTodo(todo) {
 
+}
+
+function showEditProjectDialog(e) {
+    const currentProject = projects[e.currentTarget.getAttribute("data-id")]
+    const editProjectName = document.querySelector("#edit-project-name");
+    const editProjectId = document.querySelector("#edit-project-id");
+    editProjectName.value = currentProject.name;
+    editProjectId.value = currentProject.id;
+    editProjectDialog.showModal();
+}
+
+function showProjectDetails(e) {
+    // Clear project details section
+    clearMainSection();
+    // Create project details with current project
+    const currentProject = projects[e.target.id];
+}
+
+function clearMainSection() {
+    main.replaceChildren();
 }
 
 export { DOMHandler, addProject, addTodo };
