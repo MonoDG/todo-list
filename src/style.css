@@ -182,7 +182,6 @@ main {
 .sidebar ul li+li button.btn:hover {
   background-color: unset;
   border-radius: unset;
-  /* border-radius: 5px; */
 }
 
 .sidebar ul li+li button.btn[data-id] {
