@@ -104,6 +104,12 @@ export default class ProjectComponent {
 
     // TODO current
     #createNewTaskDiv() {
+        const addTaskContainer = document.createElement("div");
+        addTaskContainer.classList.add("add-task-container");
+
+        const placeHolderAddTask = document.createElement("div");
+        const placeholderAddButton = document.createElement("button");
+
         const addNewTaskDiv = document.createElement("div");
         addNewTaskDiv.classList.add("new-task-div");
 
@@ -141,6 +147,18 @@ export default class ProjectComponent {
         cancelButton.textContent = "Cancel";
         saveButton.textContent = "Add task";
         saveButton.disabled = true;
+        saveButton.type = "submit";
+
+        cancelButton.addEventListener("click", e => {
+            e.preventDefault();
+            placeHolderAddTask.hidden = false;
+            addNewTaskDiv.hidden = true;
+        })
+
+        saveButton.addEventListener("click", e => {
+            e.preventDefault();
+            console.log("Addint new task to project " + this.#_project.name);
+        })
 
         taskNameInput.addEventListener("input", () => {
             if (taskNameInput.value === "") {
@@ -163,7 +181,22 @@ export default class ProjectComponent {
 
         addNewTaskDiv.appendChild(addNewTaskForm);
 
-        return addNewTaskDiv;
+        addNewTaskDiv.hidden = true;
+
+        placeHolderAddTask.classList.add("add-task-placeholder-div");
+        placeholderAddButton.textContent = "+ Add Task";
+        placeholderAddButton.addEventListener("click", e => {
+            e.preventDefault();
+            placeHolderAddTask.hidden = true;
+            addNewTaskDiv.hidden = false;
+        });
+
+        placeHolderAddTask.appendChild(placeholderAddButton);
+
+        addTaskContainer.appendChild(placeHolderAddTask);
+        addTaskContainer.appendChild(addNewTaskDiv);
+
+        return addTaskContainer;
     }
 
     #createTodoListDiv() {

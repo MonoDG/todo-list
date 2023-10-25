@@ -90,6 +90,7 @@ main {
 }
 
 .project-header button,
+.add-task-placeholder-div button,
 .new-task-div button {
   padding: 7px 13px;
   border: none;
@@ -97,6 +98,15 @@ main {
   font-size: 1rem;
   font-weight: 800;
   cursor: pointer;
+}
+
+.add-task-placeholder-div button {
+  background-color: inherit;
+  color: var(--platinum);
+}
+
+.add-task-placeholder-div button:hover {
+  color: var(--cadmium-red);
 }
 
 .new-task-div {
