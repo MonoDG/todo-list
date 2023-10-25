@@ -11,6 +11,7 @@
   --platinum: #E5E4E2;
   --mango: #F4BB44;
   --jade: #00A36C;
+  --cadmium-red: #D22B2B;
 }
 
 * {
@@ -284,6 +285,11 @@ main {
 
 .cancel {
   background-color: var(--charcoal);
+  color: var(--platinum);
+}
+
+.delete {
+  background-color: var(--cadmium-red);
   color: var(--platinum);
 }
 

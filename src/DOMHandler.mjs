@@ -143,22 +143,11 @@ function addProject(project) {
     // Add button event handler to see project details
     projectListItemButton.addEventListener("click", showProjectDetails);
 
-    // Edit project button
-    const projectEditButton = document.createElement("button");
-    projectEditButton.classList.add("btn");
-    projectEditButton.classList.add("project-edit");
-    projectEditButton.setAttribute("data-id", project.id);
-
     const editIcon = document.createElement("span");
     editIcon.classList.add("material-symbols-outlined");
     editIcon.textContent = "edit";
 
-    projectEditButton.addEventListener("click", showEditProjectDialog);
-
-    projectEditButton.appendChild(editIcon);
-
     projectListItem.appendChild(projectListItemButton);
-    projectListItem.appendChild(projectEditButton);
     projectList.appendChild(projectListItem);
 
     projects[project.id] = project;
@@ -181,7 +170,7 @@ function showProjectDetails(e) {
     // Clear project details section
     clearMainSection();
     // Create project details with current project
-    main.appendChild(new ProjectComponent(projects[e.target.getAttribute("data-id")]).node);
+    main.appendChild(new ProjectComponent(projects, projects[e.target.getAttribute("data-id")]).node);
 }
 
 function clearMainSection() {
