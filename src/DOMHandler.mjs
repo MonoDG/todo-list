@@ -1,4 +1,5 @@
 import Project from './project.mjs';
+import Todo from './todo.mjs';
 import ProjectComponent from './projectComponent.mjs';
 
 const sidebar = document.querySelector(".sidebar");
@@ -112,6 +113,7 @@ function DOMHandler() {
     });
 
     const myDefaultProject = new Project("Default");
+    myDefaultProject.addTodos([new Todo("Title 1", "Description 1", "Tomorrow", 1), new Todo("Title 2", "Description 2", "Today", 2)]);
     addProject(myDefaultProject);
     const addedProjectItem = document.querySelector(`button[data-id="${myDefaultProject.id}"]`);
     showProjectDetails(addedProjectItem);

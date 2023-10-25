@@ -1,3 +1,5 @@
+import { formatISO } from "date-fns";
+
 export default class ProjectComponent {
     #_projects
     #_project
@@ -105,13 +107,45 @@ export default class ProjectComponent {
         const addNewTaskDiv = document.createElement("div");
         addNewTaskDiv.classList.add("new-task-div");
 
+        const addNewTaskForm = document.createElement("form");
+        addNewTaskForm.id = "add-new-task-form";
 
+        const taskNameInput = document.createElement("input");
+        taskNameInput.placeholder = "Task name";
+        taskNameInput.classList.add("bold");
+        const taskDescriptionInput = document.createElement("input");
+        taskDescriptionInput.placeholder = "Description";
+
+        const buttonsContainer = document.createElement("div");
+        const dueDateInput = document.createElement("input");
+        dueDateInput.type = "datetime-local";
+        dueDateInput.id = "due-date";
+        dueDateInput.name = "due-date";
+        dueDateInput.value = formatISO(new Date()).slice(0, 16);
+
+        const prioritySelect = document.createElement("select");
+        [1, 2, 3, 4].forEach(value => {
+            const priorityOption = document.createElement("option");
+            priorityOption.value = value;
+            priorityOption.textContent = `Priority ${value}`;
+            prioritySelect.appendChild(priorityOption);
+        });
+
+        buttonsContainer.appendChild(dueDateInput);
+        buttonsContainer.appendChild(prioritySelect);
+
+        addNewTaskForm.appendChild(taskNameInput);
+        addNewTaskForm.appendChild(taskDescriptionInput);
+        addNewTaskForm.appendChild(buttonsContainer);
+
+        addNewTaskDiv.appendChild(addNewTaskForm);
 
         return addNewTaskDiv;
     }
 
     #createTodoListDiv() {
         const todolistDiv = document.createElement("div");
+        console.log(this.#_project.todolist);
         return todolistDiv;
     }
 }

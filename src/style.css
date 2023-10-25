@@ -51,6 +51,7 @@ main {
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
+  margin-bottom: 20px;
 }
 
 .project-name-container {
@@ -95,6 +96,48 @@ main {
   font-size: 1rem;
   font-weight: 800;
   cursor: pointer;
+}
+
+.new-task-div {
+  border: 1px solid var(--blue-gray);
+  border-radius: 5px;
+}
+
+.new-task-div form {
+  display: flex;
+  flex-direction: column;
+}
+
+.new-task-div form div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px;
+}
+
+.new-task-div input {
+  background-color: inherit;
+  border: none;
+  outline: none;
+  color: var(--platinum);
+  font-size: 1rem;
+  padding: 10px;
+}
+
+.new-task-div #due-date,
+.new-task-div select {
+  background-color: inherit;
+  border: 1px solid var(--blue-gray);
+  border-radius: 5px;
+  outline: none;
+  color: var(--platinum);
+  font-size: 1rem;
+  padding: 10px;
+}
+
+.new-task-div option {
+  background-color: var(--matte-black);
+  font-size: 1rem;
 }
 
 /* OTHER */
