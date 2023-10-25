@@ -131,12 +131,35 @@ export default class ProjectComponent {
             prioritySelect.appendChild(priorityOption);
         });
 
+        const submitButtonsContainer = document.createElement("div");
+        const cancelButton = document.createElement("button");
+        const saveButton = document.createElement("button");
+
+        cancelButton.classList.add("cancel");
+        saveButton.classList.add("confirm");
+
+        cancelButton.textContent = "Cancel";
+        saveButton.textContent = "Add task";
+        saveButton.disabled = true;
+
+        taskNameInput.addEventListener("input", () => {
+            if (taskNameInput.value === "") {
+                saveButton.disabled = true;
+            } else {
+                saveButton.disabled = false;
+            }
+        })
+
+        submitButtonsContainer.appendChild(cancelButton);
+        submitButtonsContainer.appendChild(saveButton);
+
         buttonsContainer.appendChild(dueDateInput);
         buttonsContainer.appendChild(prioritySelect);
 
         addNewTaskForm.appendChild(taskNameInput);
         addNewTaskForm.appendChild(taskDescriptionInput);
         addNewTaskForm.appendChild(buttonsContainer);
+        addNewTaskForm.appendChild(submitButtonsContainer);
 
         addNewTaskDiv.appendChild(addNewTaskForm);
 

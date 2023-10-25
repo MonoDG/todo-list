@@ -89,7 +89,8 @@ main {
   outline: 1px solid var(--blue-gray);
 }
 
-.project-header button {
+.project-header button,
+.new-task-div button {
   padding: 7px 13px;
   border: none;
   border-radius: 5px;
@@ -115,6 +116,13 @@ main {
   margin: 10px;
 }
 
+.new-task-div form div:last-child {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .new-task-div input {
   background-color: inherit;
   border: none;
@@ -122,6 +130,11 @@ main {
   color: var(--platinum);
   font-size: 1rem;
   padding: 10px;
+}
+
+.new-task-div button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .new-task-div #due-date,
