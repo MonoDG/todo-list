@@ -143,7 +143,7 @@ main {
   height: var(--navbar-height);
 }
 
-.btn:hover {
+.btn:hover:not(button[data-id]) {
   background-color: rgb(255 255 255 / .1);
   border-radius: 50%;
 }
@@ -252,9 +252,7 @@ main {
 }
 
 .sidebar ul li+li button.btn[data-id] {
-  width: unset;
-  flex-grow: 5;
-  max-width: 81%;
+  border-radius: 10px;
 }
 
 .sidebar ul li+li button.btn.project-edit {

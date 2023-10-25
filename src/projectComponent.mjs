@@ -100,8 +100,13 @@ export default class ProjectComponent {
         return optionsSection;
     }
 
+    // TODO current
     #createNewTaskDiv() {
         const addNewTaskDiv = document.createElement("div");
+        addNewTaskDiv.classList.add("new-task-div");
+
+
+
         return addNewTaskDiv;
     }
 

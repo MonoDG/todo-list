@@ -113,6 +113,8 @@ function DOMHandler() {
 
     const myDefaultProject = new Project("Default");
     addProject(myDefaultProject);
+    const addedProjectItem = document.querySelector(`button[data-id="${myDefaultProject.id}"]`);
+    showProjectDetails(addedProjectItem);
 }
 
 function resetNewProjectDialog() {
@@ -141,7 +143,7 @@ function addProject(project) {
     projectListItemButton.textContent = project.name;
 
     // Add button event handler to see project details
-    projectListItemButton.addEventListener("click", showProjectDetails);
+    projectListItemButton.addEventListener("click", e => showProjectDetails(e.target));
 
     const editIcon = document.createElement("span");
     editIcon.classList.add("material-symbols-outlined");
@@ -166,11 +168,16 @@ function showEditProjectDialog(e) {
     editProjectDialog.showModal();
 }
 
-function showProjectDetails(e) {
+function showProjectDetails(node) {
     // Clear project details section
     clearMainSection();
+    // Remove active class from other project list items
+    const projectItemButtons = document.querySelectorAll("button[data-id]");
+    projectItemButtons.forEach(button => button.classList.remove("active"));
+    // Add active class
+    node.classList.add("active");
     // Create project details with current project
-    main.appendChild(new ProjectComponent(projects, projects[e.target.getAttribute("data-id")]).node);
+    main.appendChild(new ProjectComponent(projects, projects[node.getAttribute("data-id")]).node);
 }
 
 function clearMainSection() {
