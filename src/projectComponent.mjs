@@ -230,7 +230,7 @@ export default class ProjectComponent {
 
             editButton.classList.add("confirm");
             deleteButton.classList.add("delete");
-            editButton.textContent = "Edit";
+            editButton.textContent = "Details";
             deleteButton.textContent = "Delete";
             buttons.appendChild(editButton);
             buttons.appendChild(deleteButton);
