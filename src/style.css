@@ -91,7 +91,8 @@ main {
 
 .project-header button,
 .add-task-placeholder-div button,
-.new-task-div button {
+.new-task-div button,
+.todolist-container button {
   padding: 7px 13px;
   border: none;
   border-radius: 5px;
@@ -161,6 +162,33 @@ main {
 .new-task-div option {
   background-color: var(--matte-black);
   font-size: 1rem;
+}
+
+.todolist-container {
+  margin-top: 10px;
+  color: var(--platinum);
+}
+
+.todolist-container ul {
+  list-style-type: none;
+}
+
+.todolist-container ul li {
+  border-bottom: 1px solid var(--platinum);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.todolist-container ul li div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.todolist-container input[type="checkbox"] {
+  outline: 2px solid var(--blue-gray);
+
 }
 
 /* OTHER */
@@ -359,6 +387,11 @@ main {
 .delete {
   background-color: var(--cadmium-red);
   color: var(--platinum);
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
 }
 
 /* Desktop */

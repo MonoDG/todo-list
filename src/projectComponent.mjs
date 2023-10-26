@@ -1,4 +1,5 @@
 import { formatISO } from "date-fns";
+import { TODO_STATE } from './constants.mjs';
 
 export default class ProjectComponent {
     #_projects
@@ -102,7 +103,6 @@ export default class ProjectComponent {
         return optionsSection;
     }
 
-    // TODO current
     #createNewTaskDiv() {
         const addTaskContainer = document.createElement("div");
         addTaskContainer.classList.add("add-task-container");
@@ -201,7 +201,45 @@ export default class ProjectComponent {
 
     #createTodoListDiv() {
         const todolistDiv = document.createElement("div");
-        console.log(this.#_project.todolist);
+        todolistDiv.classList.add("todolist-container");
+        const todoListUl = document.createElement("ul");
+        this.#_project.todolist.forEach(todo => {
+            const todoLi = document.createElement("li");
+            const titleDiv = document.createElement("div");
+            titleDiv.id = todo.id;
+            const titleCheckCompleted = document.createElement("input");
+            titleCheckCompleted.type = "checkbox";
+            titleDiv.appendChild(titleCheckCompleted);
+            const titleTextContent = document.createElement("span");
+            titleTextContent.textContent = todo.title;
+            titleDiv.appendChild(titleTextContent);
+
+            titleCheckCompleted.addEventListener("change", () => {
+                if (titleCheckCompleted.checked) {
+                    titleTextContent.classList.add("completed");
+                    todo.state = TODO_STATE.COMPLETED;
+                } else {
+                    titleTextContent.classList.remove("completed");
+                    todo.state = TODO_STATE.TODO;
+                }
+            });
+
+            const buttons = document.createElement("div");
+            const editButton = document.createElement("button");
+            const deleteButton = document.createElement("button");
+
+            editButton.classList.add("confirm");
+            deleteButton.classList.add("delete");
+            editButton.textContent = "Edit";
+            deleteButton.textContent = "Delete";
+            buttons.appendChild(editButton);
+            buttons.appendChild(deleteButton);
+
+            todoLi.appendChild(titleDiv);
+            todoLi.appendChild(buttons);
+            todoListUl.appendChild(todoLi);
+        });
+        todolistDiv.appendChild(todoListUl);
         return todolistDiv;
     }
 }

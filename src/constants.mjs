@@ -1,5 +1,5 @@
 const DEFAULT_DATE_FORMAT = 'yyyy-MM-dd HH:mm:ss';
-const TODO_STATES = ["TODO", "PROGRESS", "COMPLETED"];
+const TODO_STATES = ["TODO", "COMPLETED"];
 
 const TODO_STATE = (() => {
     let states = {};
