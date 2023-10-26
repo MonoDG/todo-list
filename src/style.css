@@ -175,6 +175,9 @@ main {
 
 .todolist-container ul li {
   border-bottom: 1px solid var(--platinum);
+}
+
+.todolist-container ul li div:not(.todo-container-wrapper):not(.title-div-wrapper) {
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -182,7 +185,7 @@ main {
   gap: 10px;
 }
 
-.todolist-container ul li div {
+.todolist-container ul li div:not(.todo-container-wrapper):not(.title-div-wrapper) {
   display: flex;
   gap: 10px;
   align-items: center;
@@ -190,7 +193,6 @@ main {
 
 .todolist-container input[type="checkbox"] {
   outline: 2px solid var(--blue-gray);
-
 }
 
 /* OTHER */

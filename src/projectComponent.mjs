@@ -1,5 +1,6 @@
 import { formatISO } from "date-fns";
 import { TODO_STATE } from './constants.mjs';
+import TodoComponent from "./todoComponent.mjs";
 
 export default class ProjectComponent {
     #_projects
@@ -22,7 +23,9 @@ export default class ProjectComponent {
         const projectContainer = document.createElement("div");
         projectContainer.classList.add("project-container");
         projectContainer.appendChild(this.#createNodeHeader());
-        projectContainer.appendChild(this.#createNewTaskDiv());
+        // projectContainer.appendChild(this.#createNewTaskDiv());
+        projectContainer.appendChild(this.#createAddTodoPlaceholder());
+        // projectContainer.appendChild();
         projectContainer.appendChild(this.#createTodoListDiv());
         this.#_node = projectContainer;
     }
@@ -199,14 +202,44 @@ export default class ProjectComponent {
         return addTaskContainer;
     }
 
+    #createAddTodoPlaceholder() {
+        const parentDiv = document.createElement("div");
+        const addTodoContainer = document.createElement("div");
+        const addTodoButton = document.createElement("button");
+
+        addTodoContainer.classList.add("add-task-placeholder-div");
+        addTodoButton.textContent = "+ Add Task";
+        addTodoButton.addEventListener("click", e => {
+            e.preventDefault();
+            addTodoContainer.hidden = true;
+            projectTodoContainer.hidden = false;
+        });
+
+        addTodoContainer.appendChild(addTodoButton);
+
+        const projectTodoContainer = new TodoComponent().node;
+        projectTodoContainer.hidden = true;
+
+        parentDiv.appendChild(addTodoContainer);
+        parentDiv.appendChild(projectTodoContainer);
+        return parentDiv;
+    }
+
     #createTodoListDiv() {
         const todolistDiv = document.createElement("div");
         todolistDiv.classList.add("todolist-container");
         const todoListUl = document.createElement("ul");
         this.#_project.todolist.forEach(todo => {
+            const todoComponent = new TodoComponent(todo);
+            const todoComponentWrapper = document.createElement("div");
+            todoComponentWrapper.classList.add("todo-container-wrapper");
+            todoComponentWrapper.hidden = true;
             const todoLi = document.createElement("li");
+            const todoLiFlexWrapper = document.createElement("div");
             const titleDiv = document.createElement("div");
-            titleDiv.id = todo.id;
+            const titleDivWrapper = document.createElement("div");
+            titleDivWrapper.classList.add("title-div-wrapper");
+            todoLi.setAttribute("data-id", todo.id);
             const titleCheckCompleted = document.createElement("input");
             titleCheckCompleted.type = "checkbox";
             titleDiv.appendChild(titleCheckCompleted);
@@ -225,18 +258,29 @@ export default class ProjectComponent {
             });
 
             const buttons = document.createElement("div");
-            const editButton = document.createElement("button");
+            const detailsButton = document.createElement("button");
             const deleteButton = document.createElement("button");
 
-            editButton.classList.add("confirm");
+            detailsButton.classList.add("confirm");
             deleteButton.classList.add("delete");
-            editButton.textContent = "Details";
+            detailsButton.textContent = "Details";
             deleteButton.textContent = "Delete";
-            buttons.appendChild(editButton);
+
+            detailsButton.addEventListener("click", (e) => {
+                e.preventDefault();
+                titleDivWrapper.hidden = true;
+                todoComponentWrapper.hidden = false;
+            })
+
+            buttons.appendChild(detailsButton);
             buttons.appendChild(deleteButton);
 
-            todoLi.appendChild(titleDiv);
-            todoLi.appendChild(buttons);
+            todoLiFlexWrapper.appendChild(titleDiv);
+            todoLiFlexWrapper.appendChild(buttons);
+            titleDivWrapper.appendChild(todoLiFlexWrapper);
+            todoLi.appendChild(titleDivWrapper);
+            todoComponentWrapper.appendChild(todoComponent.node);
+            todoLi.appendChild(todoComponentWrapper);
             todoListUl.appendChild(todoLi);
         });
         todolistDiv.appendChild(todoListUl);
