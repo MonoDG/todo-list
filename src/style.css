@@ -45,6 +45,11 @@ input[type="search"] {
   line-height: 1.5;
   font-size: inherit;
   cursor: inherit;
+  width: 100%;
+}
+
+input[type="search"]::placeholder {
+  color: inherit;
 }
 
 /* nav rules */
@@ -58,13 +63,14 @@ input[type="search"] {
 }
 
 .flex-nav [icon] {
-  font-size: 24px;
+  font-size: 28px;
 }
 
 .nav-left-section {
   display: flex;
   gap: 5px;
   width: calc(var(--sidebar-width) - var(--nav-p-left));
+  padding: 7px 0;
 }
 
 .nav-left-section form {
