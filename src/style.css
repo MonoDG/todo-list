@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap');
+
+:root {
+  /* Sizes */
+  --nav-height: 43px;
+  --nav-p-left: 18px;
+  --nav-p-right: 16px;
+  --sidebar-width: 305px;
+  /* Colors */
+  --jet-black: #343434;
+  --off-white: #FAF9F6;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: 'Nunito', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  color: var(--off-white);
+  font-size: 1rem;
+}
+
+button {
+  display: flex;
+  background-color: transparent;
+  color: inherit;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  flex-shrink: 0;
+}
+
+input[type="search"] {
+  height: 100%;
+  outline: none;
+  border: none;
+  background-color: rgb(255 255 255 / 0);
+  color: inherit;
+  padding: 2px;
+  line-height: 1.5;
+  font-size: inherit;
+  cursor: inherit;
+}
+
+/* nav rules */
+.flex-nav {
+  display: flex;
+  flex-shrink: 0;
+  height: var(--nav-height);
+  background-color: var(--jet-black);
+  padding-left: var(--nav-p-left);
+  padding-right: var(--nav-p-right);
+}
+
+.flex-nav [icon] {
+  font-size: 24px;
+}
+
+.nav-left-section {
+  display: flex;
+  gap: 5px;
+  width: calc(var(--sidebar-width) - var(--nav-p-left));
+}
+
+.nav-left-section form {
+  display: flex;
+  gap: 5px;
+  background-color: rgb(255 255 255 / 0.1);
+  padding-left: 2px;
+  padding-right: 2px;
+  cursor: pointer;
+}
+
+.nav-left-section form:hover {
+  background-color: rgb(0 0 0 / 0.5);
+  transition: all 200ms;
+}
+
+.nav-right-section {}
+
+/* Other rules to be defined */
+
+/* Utilities */
+.justified-between {
+  justify-content: space-between;
+}
+
+.aligned-center {
+  align-items: center;
+}
+
+.aligned-stretch {
+  align-items: stretch;
+}
+
+.ghost:hover {
+  background-color: rgb(255 255 255 / 0.2);
+}
+
+.rounded-5 {
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 1024px) {
+  input[type="search"] {
+    display: none;
+  }
+}
