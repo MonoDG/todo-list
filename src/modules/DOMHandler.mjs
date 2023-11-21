@@ -1,6 +1,6 @@
 function createProjectSidebarItem(project) {
     const button = document.createElement("button");
-    button.id = project.id;
+    button.setAttribute("data-id", project.id);
     button.classList.add("ghost", "rounded-5", "sidebar__item");
     button.textContent = project.name;
 
@@ -15,7 +15,8 @@ function createProjectSidebarItem(project) {
 }
 
 function loadProjectPage(project) {
-    console.log(project);
+    const sidebarProjectItem = document.querySelector(`[data-id="${project.id}"]`)
+    sidebarProjectItem.classList.add("active", "bold");
 }
 
 export { createProjectSidebarItem, loadProjectPage };
