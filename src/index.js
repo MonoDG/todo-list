@@ -1,5 +1,9 @@
 import './style.css';
 import ProfileImage from "./images/chick.png";
+import Project from "./modules/project.mjs";
+import { createProjectSidebarItem } from './modules/DOMHandler.mjs';
+
+const projects = {};
 
 const profileImageElement = document.querySelector("#profile-image");
 profileImageElement.src = ProfileImage;
@@ -28,8 +32,7 @@ btnDisplayDiagNewProject.addEventListener("click", () => {
 
 diagNewProject.addEventListener("close", (e) => {
     if (diagNewProject.returnValue !== "" && diagNewProject.returnValue !== "cancel") {
-        // TODO create new project instance and add it to project array
-        console.log(diagNewProject.returnValue);
+        createNewProject(diagNewProject.returnValue);
     }
     inputProjectName.value = "";
     btnConfirmNewProject.disabled = true;
@@ -43,3 +46,12 @@ btnConfirmNewProject.addEventListener("click", (e) => {
 inputProjectName.addEventListener("input", () => {
     btnConfirmNewProject.disabled = inputProjectName.value === "";
 })
+
+function createNewProject(name) {
+    const newProject = new Project(name);
+    projects[newProject.id] = newProject;
+    sidebarProjectItemsDiv.appendChild(createProjectSidebarItem(newProject));
+}
+
+// Initialize Default project
+createNewProject("Default");
