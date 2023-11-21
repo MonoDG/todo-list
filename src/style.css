@@ -177,9 +177,14 @@ input[type="search"]::placeholder {
   align-items: stretch;
 }
 
-.ghost:hover,
-.active {
+.ghost:hover {
   background-color: rgb(255 255 255 / 0.2);
+}
+
+.active,
+.active:hover {
+  background-color: rgb(227 66 52 / 0.2);
+  color: rgb(227 66 52);
 }
 
 .rounded-5 {
