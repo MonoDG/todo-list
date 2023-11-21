@@ -86,15 +86,23 @@
       </li>
     </ul>
 
-    <div class="flex">
-      <button class="ghost rounded-5 sidebar__item bold">My Projects</button>
-      <div id="div-project-add-collapse" class="flex hidden">
-        <button class="ghost aligned-center rounded-5">
-          <iconify-icon icon="material-symbols-light:add"></iconify-icon>
-        </button>
-        <button class="ghost aligned-center rounded-5">
-          <iconify-icon icon="mdi:chevron-right"></iconify-icon>
-        </button>
+    <div class="flex flex-col">
+      <div class="flex">
+        <button class="ghost rounded-5 sidebar__item bold">My Projects</button>
+        <div id="div-project-add-collapse" class="flex hidden">
+          <button class="ghost aligned-center rounded-5">
+            <iconify-icon icon="material-symbols-light:add"></iconify-icon>
+          </button>
+          <button id="projects-collapse" class="ghost aligned-center rounded-5">
+            <iconify-icon icon="mdi:chevron-right"></iconify-icon>
+            <iconify-icon icon="mdi:chevron-down" class="hidden"></iconify-icon>
+          </button>
+        </div>
+      </div>
+      <div class="sidebar__project_items flex flex-col hidden">
+        <button class="ghost rounded-5 sidebar__item">Home</button>
+        <button class="ghost rounded-5 sidebar__item">Work</button>
+        <button class="ghost rounded-5 sidebar__item">School</button>
       </div>
     </div>
   </aside>
