@@ -28,9 +28,26 @@ body {
 }
 
 aside {
+  display: flex;
+  flex-direction: column;
   width: var(--sidebar-width);
   min-height: calc(100vh - var(--nav-height));
   background-color: var(--onyx);
+  padding-top: 30px;
+}
+
+aside [icon] {
+  font-size: 24px;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: calc(var(--nav-p-left) + 4px);
+  padding-right: calc(var(--nav-p-right) + 4px);
+}
+
+ul>li {
+  display: flex;
 }
 
 button {
@@ -106,6 +123,15 @@ input[type="search"]::placeholder {
   height: 32px;
 }
 
+/* Sidebar rules */
+.sidebar__item {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+}
+
 /* Other rules to be defined */
 
 /* Utilities */
@@ -129,6 +155,10 @@ input[type="search"]::placeholder {
   border-radius: 5px;
 }
 
+.gap-5 {
+  gap: 5px;
+}
+
 .bold {
   font-weight: 800;
 }
@@ -136,6 +166,26 @@ input[type="search"]::placeholder {
 .px-5 {
   padding-left: 5px;
   padding-right: 5px;
+}
+
+.flex {
+  display: flex;
+}
+
+.red {
+  color: crimson;
+}
+
+.blue {
+  color: steelblue;
+}
+
+.green {
+  color: seagreen;
+}
+
+.purple {
+  color: blueviolet;
 }
 
 @media screen and (max-width: 1024px) {
