@@ -8,8 +8,10 @@
   --sidebar-width: 305px;
   /* Colors */
   --jet-black: #343434;
+  --matte-black: #28282B;
   --onyx: #353935;
   --off-white: #FAF9F6;
+  --vermillion: #E34234;
 }
 
 *,
@@ -61,15 +63,32 @@ button {
   padding: 2px;
   flex-shrink: 0;
   font-size: inherit;
+  font-family: inherit;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 dialog {
   margin: auto;
   border: none;
+  background-color: var(--jet-black);
+  color: var(--off-white);
+  font-size: 1rem;
 }
 
 dialog::backdrop {
   backdrop-filter: blur(2px);
+}
+
+dialog input {
+  outline: none;
+  border: none;
+  width: 100%;
+  padding: 5px;
+  font-size: inherit;
 }
 
 input[type="search"] {
@@ -170,6 +189,10 @@ input[type="search"]::placeholder {
   gap: 5px;
 }
 
+.gap-10 {
+  gap: 10px;
+}
+
 .bold {
   font-weight: 800;
 }
@@ -187,8 +210,32 @@ input[type="search"]::placeholder {
   flex-direction: column;
 }
 
+.bg-red {
+  background-color: var(--vermillion);
+}
+
+.bg-blue {
+  background-color: steelblue;
+}
+
+.bg-green {
+  background-color: seagreen;
+}
+
+.bg-purple {
+  background-color: blueviolet;
+}
+
+.bg-dark {
+  background-color: var(--matte-black);
+}
+
+.bg-light {
+  background-color: var(--off-white);
+}
+
 .red {
-  color: crimson;
+  color: var(--vermillion);
 }
 
 .blue {
@@ -201,6 +248,14 @@ input[type="search"]::placeholder {
 
 .purple {
   color: blueviolet;
+}
+
+.dark {
+  color: var(--matte-black);
+}
+
+.light {
+  color: var(--off-white);
 }
 
 .hidden {

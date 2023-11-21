@@ -109,8 +109,21 @@
 
   <!-- Create new project modal dialog -->
   <dialog id="diag-new-project" class="rounded-5">
-    <button id="btn-close-diag-new-project" autofocus>Close</button>
-    <p>This will be the modal dialog to create a new project</p>
+    <form class="flex flex-col gap-10">
+      <p>
+        <label for="input-project-name">
+          <span>Name:</span>
+          <input type="text" id="input-project-name" name="input-project-name" class="rounded-5"
+            placeholder="Project name" autofocus>
+        </label>
+      </p>
+      <div class="flex gap-10">
+        <button class="bg-dark rounded-5 px-5 bold" value="cancel" formmethod="dialog"
+          id="btn-close-diag-new-project">Close</button>
+        <button class="bg-red rounded-5 px-5 bold" value="confirm" id="btn-confirm-new-project"
+          disabled>Confirm</button>
+      </div>
+    </form>
   </dialog>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   <script src="./main.js"></script>
