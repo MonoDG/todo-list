@@ -90,7 +90,7 @@
       <div class="flex">
         <button class="ghost rounded-5 sidebar__item bold">My Projects</button>
         <div id="div-project-add-collapse" class="flex hidden">
-          <button class="ghost aligned-center rounded-5">
+          <button id="btn-display-diag-new-project" class="ghost aligned-center rounded-5">
             <iconify-icon icon="material-symbols-light:add"></iconify-icon>
           </button>
           <button id="projects-collapse" class="ghost aligned-center rounded-5">
@@ -106,6 +106,12 @@
       </div>
     </div>
   </aside>
+
+  <!-- Create new project modal dialog -->
+  <dialog id="diag-new-project" class="rounded-5">
+    <button id="btn-close-diag-new-project" autofocus>Close</button>
+    <p>This will be the modal dialog to create a new project</p>
+  </dialog>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   <script src="./main.js"></script>
 </body>
