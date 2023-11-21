@@ -177,7 +177,8 @@ input[type="search"]::placeholder {
   align-items: stretch;
 }
 
-.ghost:hover {
+.ghost:hover,
+.active {
   background-color: rgb(255 255 255 / 0.2);
 }
 
