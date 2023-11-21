@@ -14,4 +14,8 @@ function createProjectSidebarItem(project) {
     return button;
 }
 
-export { createProjectSidebarItem };
+function loadProjectPage(project) {
+    console.log(project);
+}
+
+export { createProjectSidebarItem, loadProjectPage };

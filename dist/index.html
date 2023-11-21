@@ -12,7 +12,7 @@
 <body>
   <nav class="flex-nav justified-between">
     <div class="nav-left-section">
-      <button class="ghost aligned-center rounded-5" role="switch">
+      <button id="btn-toggle-sidebar" class="ghost aligned-center rounded-5" role="switch">
         <iconify-icon icon="material-symbols-light:menu-rounded"></iconify-icon>
       </button>
       <button class="ghost aligned-center rounded-5">
@@ -46,63 +46,65 @@
       </a>
     </div>
   </nav>
-  <aside>
-    <ul>
-      <li class="ghost rounded-5">
-        <button class="sidebar__item">
-          <div class="flex aligned-center gap-5">
-            <iconify-icon icon="mdi:inbox" class="blue"></iconify-icon>
-            <span>Inbox</span>
-          </div>
-          <span>1</span>
-        </button>
-      </li>
-      <li class="ghost rounded-5">
-        <button class="sidebar__item">
-          <div class="flex aligned-center gap-5">
-            <iconify-icon icon="mdi:calendar" class="green"></iconify-icon>
-            <span>Today</span>
-          </div>
-          <span class="red">2</span>
-        </button>
-      </li>
-      <li class="ghost rounded-5">
-        <button class="sidebar__item">
-          <div class="flex aligned-center gap-5">
-            <iconify-icon icon="mdi:calendar-month" class="purple"></iconify-icon>
-            <span>Upcoming</span>
-          </div>
-          <span></span>
-        </button>
-      </li>
-      <li class="ghost rounded-5">
-        <button class="sidebar__item">
-          <div class="flex aligned-center gap-5">
-            <iconify-icon icon="mdi:filter-variant" class="red"></iconify-icon>
-            <span>Filters & Labels</span>
-          </div>
-          <span></span>
-        </button>
-      </li>
-    </ul>
+  <div class="grid-wrapper">
+    <aside>
+      <ul>
+        <li class="ghost rounded-5">
+          <button class="sidebar__item">
+            <div class="flex aligned-center gap-5">
+              <iconify-icon icon="mdi:inbox" class="blue"></iconify-icon>
+              <span>Inbox</span>
+            </div>
+            <span>1</span>
+          </button>
+        </li>
+        <li class="ghost rounded-5">
+          <button class="sidebar__item">
+            <div class="flex aligned-center gap-5">
+              <iconify-icon icon="mdi:calendar" class="green"></iconify-icon>
+              <span>Today</span>
+            </div>
+            <span class="red">2</span>
+          </button>
+        </li>
+        <li class="ghost rounded-5">
+          <button class="sidebar__item">
+            <div class="flex aligned-center gap-5">
+              <iconify-icon icon="mdi:calendar-month" class="purple"></iconify-icon>
+              <span>Upcoming</span>
+            </div>
+            <span></span>
+          </button>
+        </li>
+        <li class="ghost rounded-5">
+          <button class="sidebar__item">
+            <div class="flex aligned-center gap-5">
+              <iconify-icon icon="mdi:filter-variant" class="red"></iconify-icon>
+              <span>Filters & Labels</span>
+            </div>
+            <span></span>
+          </button>
+        </li>
+      </ul>
 
-    <div class="flex flex-col">
-      <div class="flex">
-        <button id="sidebar-projects-title" class="ghost rounded-5 sidebar__item bold">My Projects</button>
-        <div id="div-project-add-collapse" class="flex">
-          <button id="btn-display-diag-new-project" class="ghost aligned-center rounded-5">
-            <iconify-icon icon="material-symbols-light:add"></iconify-icon>
-          </button>
-          <button id="projects-collapse" class="ghost aligned-center rounded-5">
-            <iconify-icon icon="mdi:chevron-right" class="hidden"></iconify-icon>
-            <iconify-icon icon="mdi:chevron-down"></iconify-icon>
-          </button>
+      <div class="flex flex-col">
+        <div class="flex">
+          <button id="sidebar-projects-title" class="ghost rounded-5 sidebar__item bold">My Projects</button>
+          <div id="div-project-add-collapse" class="flex">
+            <button id="btn-display-diag-new-project" class="ghost aligned-center rounded-5">
+              <iconify-icon icon="material-symbols-light:add"></iconify-icon>
+            </button>
+            <button id="projects-collapse" class="ghost aligned-center rounded-5">
+              <iconify-icon icon="mdi:chevron-right" class="hidden"></iconify-icon>
+              <iconify-icon icon="mdi:chevron-down"></iconify-icon>
+            </button>
+          </div>
         </div>
+        <div class="sidebar__project_items flex flex-col"></div>
       </div>
-      <div class="sidebar__project_items flex flex-col"></div>
-    </div>
-  </aside>
-
+    </aside>
+    <main></main>
+  </div>
   <!-- Create new project modal dialog -->
   <dialog id="diag-new-project" class="rounded-5">
     <form class="flex flex-col gap-10">

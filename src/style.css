@@ -37,17 +37,22 @@ aside {
   min-height: calc(100vh - var(--nav-height));
   background-color: var(--onyx);
   padding-top: 30px;
-  padding-left: calc(var(--nav-p-left) + 4px);
-  padding-right: calc(var(--nav-p-right) + 4px);
+  overflow: hidden;
+  transition: ease-in 300ms;
 }
 
 aside [icon] {
   font-size: 24px;
 }
 
+aside>div,
+ul {
+  padding-left: var(--nav-p-left);
+  padding-right: var(--nav-p-right);
+}
+
 ul {
   list-style-type: none;
-  padding: 0;
 }
 
 ul>li {
@@ -162,6 +167,12 @@ input[type="search"]::placeholder {
   padding: 5px 10px;
 }
 
+/* Grid Layout rules */
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
 /* Other rules to be defined */
 
 /* Utilities */
@@ -266,6 +277,10 @@ input[type="search"]::placeholder {
 
 .hidden {
   display: none;
+}
+
+.collapse {
+  width: 0px;
 }
 
 @media screen and (max-width: 1024px) {
