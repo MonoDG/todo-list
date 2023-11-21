@@ -30,10 +30,13 @@ body {
 aside {
   display: flex;
   flex-direction: column;
+  gap: 20px;
   width: var(--sidebar-width);
   min-height: calc(100vh - var(--nav-height));
   background-color: var(--onyx);
   padding-top: 30px;
+  padding-left: calc(var(--nav-p-left) + 4px);
+  padding-right: calc(var(--nav-p-right) + 4px);
 }
 
 aside [icon] {
@@ -42,8 +45,7 @@ aside [icon] {
 
 ul {
   list-style-type: none;
-  padding-left: calc(var(--nav-p-left) + 4px);
-  padding-right: calc(var(--nav-p-right) + 4px);
+  padding: 0;
 }
 
 ul>li {
@@ -186,6 +188,10 @@ input[type="search"]::placeholder {
 
 .purple {
   color: blueviolet;
+}
+
+.hidden {
+  display: none;
 }
 
 @media screen and (max-width: 1024px) {
