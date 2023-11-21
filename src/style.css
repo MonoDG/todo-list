@@ -51,6 +51,10 @@ ul {
   padding-right: var(--nav-p-right);
 }
 
+main {
+  background-color: var(--matte-black);
+}
+
 ul {
   list-style-type: none;
 }
