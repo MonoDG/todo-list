@@ -63,6 +63,15 @@ button {
   font-size: inherit;
 }
 
+dialog {
+  margin: auto;
+  border: none;
+}
+
+dialog::backdrop {
+  backdrop-filter: blur(2px);
+}
+
 input[type="search"] {
   height: 100%;
   outline: none;
