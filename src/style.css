@@ -29,6 +29,13 @@ body {
   min-height: 100vh;
 }
 
+input[type="text"] {
+  line-height: 1.5;
+  background-color: inherit;
+  border: 1px solid var(--onyx);
+  color: inherit;
+}
+
 aside {
   display: flex;
   flex-direction: column;
@@ -41,7 +48,8 @@ aside {
   transition: all 200ms;
 }
 
-aside [icon] {
+aside [icon],
+main [icon] {
   font-size: 24px;
 }
 
@@ -180,6 +188,14 @@ input[type="search"]::placeholder {
 .grid-wrapper {
   display: grid;
   grid-template-columns: auto 1fr;
+}
+
+/* Project Component rules */
+.project-title {
+  line-height: 1.5;
+  width: min-content;
+  cursor: text;
+  font-size: 1.2rem;
 }
 
 /* Other rules to be defined */

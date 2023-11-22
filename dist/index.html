@@ -104,7 +104,34 @@
     </aside>
     <main>
       <div id="project-page">
-        <h1>Project Page</h1>
+        <div class="project-header flex justified-between aligned-center gap-10">
+          <form class="flex flex-col gap-10">
+            <label for="input-project-title" class="project-title ghost rounded-5 px-5 bold"
+              id="lbl-project-title">Home</label>
+            <input type="text" class="project-title rounded-5 px-5 bold hidden" id="input-project-title" value="Home">
+            <div class="flex gap-5 hidden">
+              <button class="bg-red rounded-5 px-5 bold">Save</button>
+              <button class="bg-dark rounded-5 px-5 bold">Cancel</button>
+            </div>
+          </form>
+          <div class="button-group flex gap-5">
+            <button class="flex gap-5 ghost aligned-center rounded-5 px-5">
+              <iconify-icon icon="mdi:account-plus-outline" flip="horizontal"></iconify-icon>
+              <span>Share</span>
+            </button>
+            <button class="flex gap-5 ghost aligned-center rounded-5 px-5">
+              <iconify-icon icon="mdi:view-dashboard-edit-outline"></iconify-icon>
+              <span>View</span>
+            </button>
+            <button class="flex gap-5 ghost aligned-center rounded-5 px-5">
+              <iconify-icon icon="mdi:comment-outline"></iconify-icon>
+              <span>Comments</span>
+            </button>
+            <button class="flex gap-5 ghost aligned-center rounded-5 px-5">
+              <iconify-icon icon="mdi:dots-horizontal"></iconify-icon>
+            </button>
+          </div>
+        </div>
       </div>
     </main>
   </div>

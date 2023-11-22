@@ -21,9 +21,8 @@ function loadProjectPage(project) {
     const sidebarProjectItem = document.querySelector(`[data-id="${project.id}"]`)
     sidebarProjectItem.classList.add("active", "bold");
     const divProjectPage = document.querySelector("#project-page");
-    divProjectPage.replaceChildren();
-    divProjectPage.appendChild(new ProjectComponent(project).node);
-
+    // divProjectPage.replaceChildren();
+    // divProjectPage.appendChild(new ProjectComponent(project).node);
 }
 
 export { createProjectSidebarItem, loadProjectPage };

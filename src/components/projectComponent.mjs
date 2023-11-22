@@ -20,12 +20,19 @@ export default class ProjectComponent {
     #setupNode() {
         const projectContainer = document.createElement("div");
         projectContainer.classList.add("project-container");
-        projectContainer.appendChild(this.#createNodeHeader());
+        // projectContainer.appendChild(this.#createNodeHeader());
         // projectContainer.appendChild(this.#createNewTaskDiv());
-        projectContainer.appendChild(this.#createAddTodoPlaceholder());
+        // projectContainer.appendChild(this.#createAddTodoPlaceholder());
         // projectContainer.appendChild();
-        projectContainer.appendChild(this.#createTodoListDiv());
+        // projectContainer.appendChild(this.#createTodoListDiv());
+        projectContainer.appendChild(this.#createHeader());
         this.#_node = projectContainer;
+    }
+
+    #createHeader() {
+        const header = document.createElement("div");
+        header.classList.add("project-header");
+        return header;
     }
 
     #createNodeHeader() {
