@@ -55,6 +55,11 @@ main {
   background-color: var(--matte-black);
 }
 
+main>div {
+  width: 60%;
+  margin: 40px auto;
+}
+
 ul {
   list-style-type: none;
 }

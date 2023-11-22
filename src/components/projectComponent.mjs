@@ -1,14 +1,12 @@
 import { formatISO } from "date-fns";
-import { TODO_STATE } from './constants.mjs';
 import TodoComponent from "./todoComponent.mjs";
+import { projects } from "../utils/constants.mjs";
 
 export default class ProjectComponent {
-    #_projects
     #_project
     #_node
 
-    constructor(projects, project) {
-        this.#_projects = projects;
+    constructor(project) {
         this.#_project = project;
         this.#setupNode();
     }
@@ -97,7 +95,7 @@ export default class ProjectComponent {
             const projectToRemove = document.querySelector(`button[data-id="${this.#_project.id}"]`).parentElement;
             projectList.removeChild(projectToRemove);
             // TODO remove from local storage project list when implemented
-            delete this.#_projects[this.project.id];
+            delete projects[this.project.id];
             // TODO change to project list overview instead
             document.querySelector(".main").replaceChildren();
         });

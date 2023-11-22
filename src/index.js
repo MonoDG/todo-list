@@ -2,8 +2,7 @@ import './style.css';
 import ProfileImage from "./images/chick.png";
 import Project from "./modules/project.mjs";
 import { createProjectSidebarItem, loadProjectPage } from './modules/DOMHandler.mjs';
-
-const projects = {};
+import { projects } from './utils/constants.mjs';
 
 const profileImageElement = document.querySelector("#profile-image");
 profileImageElement.src = ProfileImage;
