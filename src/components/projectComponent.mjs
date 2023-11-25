@@ -52,7 +52,7 @@ export default class ProjectComponent {
 
         const btnCancelProject = document.createElement("button");
         btnCancelProject.id = "btn-cancel-project-title";
-        btnCancelProject.classList.add("bg-red", "rounded-5", "px-5", "bold");
+        btnCancelProject.classList.add("ghost", "rounded-5", "px-5", "bold");
         btnCancelProject.textContent = "Cancel";
 
         divFormButtons.appendChild(btnSaveProject);
@@ -121,6 +121,35 @@ export default class ProjectComponent {
         header.appendChild(divOtherButtons);
 
         // Add event listeners
+        labelProjectTitle.addEventListener("click", () => {
+            labelProjectTitle.classList.add("hidden");
+            inputProjectTitle.classList.remove("hidden")
+            divFormButtons.classList.remove("hidden");
+        });
+
+        inputProjectTitle.addEventListener("input", () => {
+            btnSaveProject.disabled = inputProjectTitle.value === "";
+        })
+
+        btnSaveProject.addEventListener("click", (e) => {
+            e.preventDefault();
+            this.#_project.name = inputProjectTitle.value;
+            labelProjectTitle.textContent = this.#_project.name;
+            inputProjectTitle.value = this.#_project.name;
+            const sidebarProjectItem = document.querySelector(`[data-id="${this.#_project.id}"]`);
+            sidebarProjectItem.textContent = this.#_project.name;
+            labelProjectTitle.classList.remove("hidden")
+            inputProjectTitle.classList.add("hidden");
+            divFormButtons.classList.add("hidden");
+        })
+
+        btnCancelProject.addEventListener("click", (e) => {
+            e.preventDefault();
+            inputProjectTitle.value = this.#_project.name;
+            divFormButtons.classList.add("hidden");
+            inputProjectTitle.classList.add("hidden");
+            labelProjectTitle.classList.remove("hidden");
+        })
 
         return header;
     }
