@@ -1,4 +1,4 @@
-import { formatISO } from "date-fns";
+import { format } from "date-fns";
 import TodoComponent from "./todoComponent.mjs";
 import { projects } from "../utils/constants.mjs";
 
@@ -18,8 +18,9 @@ export default class ProjectComponent {
     set node(value) { this.#_node = value; };
 
     #setupNode() {
-        const projectContainer = document.createElement("div");
+        const projectContainer = document.querySelector("#project-page");
         projectContainer.appendChild(this.#createHeader());
+        projectContainer.appendChild(this.#createAddTodoSection());
         this.#_node = projectContainer;
     }
 
@@ -102,7 +103,7 @@ export default class ProjectComponent {
         btnComments.appendChild(iconCommentsSpan);
 
         const btnDots = document.createElement("button");
-        btnDots.classList.add("flex", "gap-5", "ghost", "aligned-center", "rounded-5", "px-5");
+        btnDots.classList.add("flex", "ghost", "aligned-center", "rounded-5", "px-5");
 
         const iconDots = document.createElement("iconify-icon");
         iconDots.setAttribute("icon", "mdi:dots-horizontal");
@@ -154,13 +155,93 @@ export default class ProjectComponent {
         return header;
     }
 
-    // #createNodeHeader() {
-    //     const projectHeader = document.createElement("div");
-    //     projectHeader.classList.add("project-header");
-    //     projectHeader.appendChild(this.#createNameSection());
-    //     projectHeader.appendChild(this.#createOptionsSection());
-    //     return projectHeader;
-    // }
+    #createAddTodoSection() {
+        const todoSection = document.createElement("div");
+        todoSection.classList.add("add-todo-section");
+        const buttonDisplayForm = document.createElement("button");
+        buttonDisplayForm.classList.add("flex", "ghost", "hover-red", "aligned-center", "rounded-5", "px-5");
+        const iconPlus = document.createElement("iconify-icon");
+        iconPlus.setAttribute("icon", "material-symbols-light:add")
+        buttonDisplayForm.appendChild(iconPlus);
+        const spanText = document.createElement("span");
+        spanText.textContent = "Add Todo";
+        buttonDisplayForm.appendChild(spanText);
+        const formAddTodo = document.createElement("form");
+        formAddTodo.classList.add("add-todo-form", "hidden", "border-light", "rounded-5");
+        // input
+        const inputTodoTitle = document.createElement("input");
+        inputTodoTitle.setAttribute("type", "text");
+        inputTodoTitle.classList.add("project-title", "px-5", "rounded-5", "bold");
+        inputTodoTitle.placeholder = "Todo title";
+        inputTodoTitle.id = "inputNewTodoTitle";
+        // textarea
+        const textAreaTodoDescription = document.createElement("textarea");
+        textAreaTodoDescription.placeholder = "Description";
+        textAreaTodoDescription.id = "txtAreaTodoDescription";
+        // div with 4 butons left aligned
+        const divOtherButtons = document.createElement("div");
+        divOtherButtons.classList.add("flex", "aligned-center", "gap-5");
+        const inputDueDate = document.createElement("input");
+        inputDueDate.setAttribute("type", "date");
+        inputDueDate.classList.add("px-5");
+        inputDueDate.id = "input-due-date";
+        inputDueDate.value = format(new Date(), "yyyy-MM-dd");
+        divOtherButtons.appendChild(inputDueDate);
+
+        const selectPriority = document.createElement("select");
+        selectPriority.classList.add("px-5");
+        selectPriority.id = "select-priority";
+        for (let i = 0; i < 4; i++) {
+            const priority = document.createElement("option");
+            priority.value = i + 1;
+            priority.textContent = `Priority ${i + 1}`;
+            selectPriority.appendChild(priority);
+        }
+        divOtherButtons.appendChild(selectPriority);
+        // div with 3 buttons 1 left aligned, 2 right aligned
+        const divSumbitButtons = document.createElement("div");
+        divSumbitButtons.classList.add("flex", "aligned-center", "justified-end", "border-top", "gap-10", "px-5", "py-5");
+
+        const btnCancelAddTodo = document.createElement("button");
+        btnCancelAddTodo.classList.add("ghost", "rounded-5", "px-5", "bold");
+        btnCancelAddTodo.textContent = "Cancel";
+
+        const btnAddTodo = document.createElement("button");
+        btnAddTodo.classList.add("bg-red", "light", "rounded-5", "px-5", "bold");
+        btnAddTodo.textContent = "Add todo";
+        btnAddTodo.disabled = true;
+
+        divSumbitButtons.appendChild(btnCancelAddTodo);
+        divSumbitButtons.appendChild(btnAddTodo);
+
+        formAddTodo.appendChild(inputTodoTitle);
+        formAddTodo.appendChild(textAreaTodoDescription);
+        formAddTodo.appendChild(divOtherButtons);
+        formAddTodo.appendChild(divSumbitButtons);
+
+        buttonDisplayForm.addEventListener("click", () => {
+            buttonDisplayForm.classList.add("hidden");
+            formAddTodo.classList.remove("hidden");
+        });
+
+        btnCancelAddTodo.addEventListener("click", (e) => {
+            e.preventDefault();
+            buttonDisplayForm.classList.remove("hidden");
+            formAddTodo.classList.add("hidden");
+            inputTodoTitle.value = "";
+            textAreaTodoDescription.value = "";
+            inputDueDate.value = format(new Date(), "yyyy-MM-dd");
+            selectPriority.value = 1;
+        })
+
+        inputTodoTitle.addEventListener("input", () => {
+            btnAddTodo.disabled = inputTodoTitle.value === "";
+        })
+
+        todoSection.appendChild(buttonDisplayForm);
+        todoSection.appendChild(formAddTodo);
+        return todoSection;
+    }
 
     // #createNameSection() {
     //     const nameSection = document.createElement("div");

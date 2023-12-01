@@ -29,11 +29,43 @@ body {
   min-height: 100vh;
 }
 
-input[type="text"] {
+input,
+select,
+textarea {
   line-height: 1.5;
   background-color: inherit;
   border: 1px solid var(--onyx);
   color: inherit;
+  font-size: inherit;
+}
+
+option {
+  line-height: 1.5;
+  background-color: var(--jet-black);
+  color: var(--off-white);
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+}
+
+textarea {
+  font-family: inherit;
+  font-size: 1.2rem;
+  resize: none;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+.add-todo-form>input[type="text"] {
+  border: none;
+}
+
+.add-todo-form>input[type="text"]:focus {
+  outline: none;
 }
 
 aside {
@@ -198,11 +230,19 @@ input[type="search"]::placeholder {
   font-size: 1.2rem;
 }
 
+.add-todo-section {
+  margin-top: 30px;
+}
+
 /* Other rules to be defined */
 
 /* Utilities */
 .justified-between {
   justify-content: space-between;
+}
+
+.justified-end {
+  justify-content: end;
 }
 
 .aligned-center {
@@ -242,6 +282,11 @@ input[type="search"]::placeholder {
 .px-5 {
   padding-left: 5px;
   padding-right: 5px;
+}
+
+.py-5 {
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .flex {
@@ -300,12 +345,24 @@ input[type="search"]::placeholder {
   color: var(--off-white);
 }
 
+.border-top {
+  border-top: 1px solid var(--off-white);
+}
+
+.border-light {
+  border: 1px solid var(--off-white);
+}
+
 .hidden {
   display: none;
 }
 
 .collapse {
   width: 0px;
+}
+
+.hover-red:hover {
+  color: var(--vermillion);
 }
 
 @media screen and (max-width: 1024px) {
