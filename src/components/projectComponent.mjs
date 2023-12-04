@@ -1,6 +1,6 @@
-import { format } from "date-fns";
-import TodoComponent from "./todoComponent.mjs";
-import { projects } from "../utils/constants.mjs";
+import { format, parseISO } from "date-fns";
+import Todo from '../modules/todo.mjs';
+import { DATE_FORMAT } from "../utils/constants.mjs";
 
 export default class ProjectComponent {
     #_project
@@ -174,6 +174,7 @@ export default class ProjectComponent {
         inputTodoTitle.classList.add("project-title", "px-5", "rounded-5", "bold");
         inputTodoTitle.placeholder = "Todo title";
         inputTodoTitle.id = "inputNewTodoTitle";
+        inputTodoTitle.required = true;
         // textarea
         const textAreaTodoDescription = document.createElement("textarea");
         textAreaTodoDescription.placeholder = "Description";
@@ -236,6 +237,19 @@ export default class ProjectComponent {
 
         inputTodoTitle.addEventListener("input", () => {
             btnAddTodo.disabled = inputTodoTitle.value === "";
+
+        })
+
+        btnAddTodo.addEventListener("click", (e) => {
+            let isFormValid = formAddTodo.checkValidity();
+            if (!isFormValid) {
+                formAddTodo.reportValidity();
+            } else {
+                e.preventDefault();
+                let newTodo = new Todo(this.#_project.id, inputTodoTitle.value, textAreaTodoDescription.value, format(parseISO(inputDueDate.value), DATE_FORMAT), selectPriority.value);
+                this.#_project.todolist.push(newTodo);
+                console.log(this.#_project.todolist);
+            }
         })
 
         todoSection.appendChild(buttonDisplayForm);
