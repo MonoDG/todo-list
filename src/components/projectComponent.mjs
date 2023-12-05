@@ -21,6 +21,7 @@ export default class ProjectComponent {
         const projectContainer = document.querySelector("#project-page");
         projectContainer.appendChild(this.#createHeader());
         projectContainer.appendChild(this.#createAddTodoSection());
+        projectContainer.appendChild(this.#createTodosDiv());
         this.#_node = projectContainer;
     }
 
@@ -233,6 +234,7 @@ export default class ProjectComponent {
             textAreaTodoDescription.value = "";
             inputDueDate.value = format(new Date(), "yyyy-MM-dd");
             selectPriority.value = 1;
+            btnAddTodo.disabled = true;
         })
 
         inputTodoTitle.addEventListener("input", () => {
@@ -249,12 +251,40 @@ export default class ProjectComponent {
                 let newTodo = new Todo(this.#_project.id, inputTodoTitle.value, textAreaTodoDescription.value, format(parseISO(inputDueDate.value), DATE_FORMAT), selectPriority.value);
                 this.#_project.todolist.push(newTodo);
                 console.log(this.#_project.todolist);
+                // TODO clear form
+                btnCancelAddTodo.click();
+                // TODO display new todo
+                this.#appendTodo(newTodo);
             }
         })
 
         todoSection.appendChild(buttonDisplayForm);
         todoSection.appendChild(formAddTodo);
         return todoSection;
+    }
+
+    #createTodosDiv() {
+        const todoDiv = document.createElement("div");
+        todoDiv.classList.add("project-todos", "flex", "flex-col");
+
+        this.#_project.todolist.forEach(todo => {
+            let todoItem = document.createElement("div");
+            todoItem.setAttribute("data-id", todo.id);
+            todoItem.classList.add("todo-item", "flex", "justified-between", "aligned-center", "gap-10", "border-light");
+            todoItem.textContent = todo.title;
+            todoDiv.appendChild(todoItem);
+        })
+        return todoDiv;
+    }
+
+    #appendTodo(todo) {
+        const todosDiv = document.querySelector(".project-todos");
+        console.log(todosDiv);
+        let todoItem = document.createElement("div");
+        todoItem.setAttribute("data-id", todo.id);
+        todoItem.classList.add("todo-item", "flex", "justified-between", "aligned-center", "gap-10", "border-light");
+        todoItem.textContent = todo.title;
+        todosDiv.appendChild(todoItem);
     }
 
     // #createNameSection() {

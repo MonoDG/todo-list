@@ -234,6 +234,10 @@ input[type="search"]::placeholder {
   margin-top: 30px;
 }
 
+.todo-item {
+  flex-grow: 1;
+}
+
 /* Other rules to be defined */
 
 /* Utilities */
