@@ -234,8 +234,17 @@ input[type="search"]::placeholder {
   margin-top: 30px;
 }
 
+.project-todos {
+  margin-top: 60px;
+}
+
+.project-todos>*+* {
+  border-top: 1px solid var(--off-white);
+}
+
 .todo-item {
   flex-grow: 1;
+  padding: 5px;
 }
 
 /* Other rules to be defined */

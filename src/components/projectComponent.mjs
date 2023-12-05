@@ -250,10 +250,7 @@ export default class ProjectComponent {
                 e.preventDefault();
                 let newTodo = new Todo(this.#_project.id, inputTodoTitle.value, textAreaTodoDescription.value, format(parseISO(inputDueDate.value), DATE_FORMAT), selectPriority.value);
                 this.#_project.todolist.push(newTodo);
-                console.log(this.#_project.todolist);
-                // TODO clear form
                 btnCancelAddTodo.click();
-                // TODO display new todo
                 this.#appendTodo(newTodo);
             }
         })
@@ -270,19 +267,24 @@ export default class ProjectComponent {
         this.#_project.todolist.forEach(todo => {
             let todoItem = document.createElement("div");
             todoItem.setAttribute("data-id", todo.id);
-            todoItem.classList.add("todo-item", "flex", "justified-between", "aligned-center", "gap-10", "border-light");
+            todoItem.classList.add("todo-item", "flex", "justified-between", "aligned-center", "gap-10", "bold");
             todoItem.textContent = todo.title;
             todoDiv.appendChild(todoItem);
-        })
+        });
+
+        if (this.#_project.todolist.length > 0) {
+            todoDiv.classList.add("border-light");
+        }
+
         return todoDiv;
     }
 
     #appendTodo(todo) {
         const todosDiv = document.querySelector(".project-todos");
-        console.log(todosDiv);
+        todosDiv.classList.add("border-light");
         let todoItem = document.createElement("div");
         todoItem.setAttribute("data-id", todo.id);
-        todoItem.classList.add("todo-item", "flex", "justified-between", "aligned-center", "gap-10", "border-light");
+        todoItem.classList.add("todo-item", "flex", "justified-between", "aligned-center", "gap-10", "bold");
         todoItem.textContent = todo.title;
         todosDiv.appendChild(todoItem);
     }
