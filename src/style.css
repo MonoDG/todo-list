@@ -60,11 +60,13 @@ textarea:focus {
   outline: none;
 }
 
-.add-todo-form>input[type="text"] {
+.add-todo-form>input[type="text"],
+.edit-todo-form>input[type="text"] {
   border: none;
 }
 
-.add-todo-form>input[type="text"]:focus {
+.add-todo-form>input[type="text"]:focus,
+.edit-todo-form>input[type="text"]:focus {
   outline: none;
 }
 
@@ -240,6 +242,7 @@ input[type="search"]::placeholder {
 
 .project-todos>*+* {
   border-top: 1px solid var(--off-white);
+  margin-top: 10px;
 }
 
 .todo-item {
@@ -377,6 +380,14 @@ details>div {
 
 .border-red {
   border: 1px solid var(--vermillion);
+}
+
+.border-onyx {
+  border: 1px solid var(--onyx);
+}
+
+.border-jet-black {
+  border: 1px solid var(--jet-black);
 }
 
 .hidden {

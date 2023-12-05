@@ -273,29 +273,142 @@ export default class ProjectComponent {
     }
 
     #appendTodo(parent, todo) {
-        parent.classList.add("border-light", "rounded-5");
+        // parent.classList.add("border-light", "rounded-5");
         let todoItem = document.createElement("details");
         todoItem.setAttribute("data-id", todo.id);
-        todoItem.classList.add("todo-item", "flex", "justified-between", "aligned-center", "gap-10", "bold");
+        todoItem.classList.add("todo-item", "flex", "justified-between", "aligned-center", "gap-10", "bold", "border-jet-black", "rounded-5");
         let todoSummary = document.createElement("summary");
         todoSummary.classList.add("flex", "justified-between", "aligned-center");
         todoSummary.textContent = todo.title;
 
-        let todoSummaryButtons = document.createElement("div")
+        // Edit Todo Form
+        const formEditTodo = document.createElement("form");
+        formEditTodo.classList.add("edit-todo-form");
+        // input
+        const inputTodoTitle = document.createElement("input");
+        inputTodoTitle.setAttribute("type", "text");
+        inputTodoTitle.classList.add("project-title", "px-5", "rounded-5", "bold");
+        inputTodoTitle.placeholder = "Todo title";
+        inputTodoTitle.id = "inputEditTodoTitle";
+        inputTodoTitle.required = true;
+        inputTodoTitle.value = todo.title;
+        inputTodoTitle.setAttribute("readonly", true);
+        // textarea
+        const textAreaTodoDescription = document.createElement("textarea");
+        textAreaTodoDescription.placeholder = "Description";
+        textAreaTodoDescription.id = "txtAreaEditTodoDescription";
+        textAreaTodoDescription.value = todo.description;
+        textAreaTodoDescription.setAttribute("readonly", true);
+        // div with 4 butons left aligned
+        const divOtherButtons = document.createElement("div");
+        divOtherButtons.classList.add("flex", "aligned-center", "gap-5");
+        const inputDueDate = document.createElement("input");
+        inputDueDate.setAttribute("type", "date");
+        inputDueDate.classList.add("px-5");
+        inputDueDate.id = "edit-input-due-date";
+        inputDueDate.value = todo.dueDate;
+        inputDueDate.setAttribute("readonly", true);
+        divOtherButtons.appendChild(inputDueDate);
+
+        const selectPriority = document.createElement("select");
+        selectPriority.classList.add("px-5");
+        selectPriority.id = "edit-select-priority";
+        for (let i = 0; i < 4; i++) {
+            const priority = document.createElement("option");
+            priority.value = i + 1;
+            priority.textContent = `Priority ${i + 1}`;
+            selectPriority.appendChild(priority);
+        }
+        selectPriority.value = todo.priority;
+        selectPriority.disabled = true;
+        divOtherButtons.appendChild(selectPriority);
+        // div with 3 buttons 1 left aligned, 2 right aligned
+        const divSumbitButtons = document.createElement("div");
+        divSumbitButtons.classList.add("flex", "aligned-center", "hidden", "justified-end", "border-top", "gap-10", "px-5", "py-5");
+
+        const btnCancelEditTodo = document.createElement("button");
+        btnCancelEditTodo.classList.add("ghost", "rounded-5", "px-5", "bold");
+        btnCancelEditTodo.textContent = "Cancel";
+
+        const btnEditTodo = document.createElement("button");
+        btnEditTodo.classList.add("bg-blue", "light", "rounded-5", "px-5", "bold");
+        btnEditTodo.textContent = "Edit todo";
+
+        divSumbitButtons.appendChild(btnCancelEditTodo);
+        divSumbitButtons.appendChild(btnEditTodo);
+
+        formEditTodo.appendChild(inputTodoTitle);
+        formEditTodo.appendChild(textAreaTodoDescription);
+        formEditTodo.appendChild(divOtherButtons);
+        formEditTodo.appendChild(divSumbitButtons);
+
+        btnCancelEditTodo.addEventListener("click", (e) => {
+            e.preventDefault();
+            inputTodoTitle.value = todo.title;
+            textAreaTodoDescription.value = todo.description;
+            inputDueDate.value = todo.dueDate;
+            selectPriority.value = todo.priority;
+            inputTodoTitle.setAttribute("readonly", true);
+            textAreaTodoDescription.setAttribute("readonly", true);
+            inputDueDate.setAttribute("readonly", true);
+            selectPriority.disabled = true;
+            divSumbitButtons.classList.add("hidden");
+        })
+
+        inputTodoTitle.addEventListener("input", () => {
+            btnEditTodo.disabled = inputTodoTitle.value === "";
+        })
+
+        btnEditTodo.addEventListener("click", (e) => {
+            let isFormValid = formEditTodo.checkValidity();
+            if (!isFormValid) {
+                formEditTodo.reportValidity();
+            } else {
+                e.preventDefault();
+                // let newTodo = new Todo(this.#_project.id, inputTodoTitle.value, textAreaTodoDescription.value, format(parseISO(inputDueDate.value), DATE_FORMAT), selectPriority.value);
+                // this.#_project.todolist.push(newTodo);
+                // btnCancelAddTodo.click();
+                // const todosDiv = document.querySelector(".project-todos");
+                // this.#appendTodo(todosDiv, newTodo);
+                console.log("Should edit todo");
+            }
+        })
+        // End Edit Todo Form
+
+        let todoSummaryButtons = document.createElement("div");
         todoSummaryButtons.classList.add("flex", "gap-5");
 
-        let btnEditTodo = document.createElement("button");
-        btnEditTodo.classList.add("bg-blue", "light", "bold", "rounded-5", "px-5", "py-5");
-        btnEditTodo.textContent = "Edit";
-        todoSummaryButtons.appendChild(btnEditTodo);
+        let btnDisplayEditTodo = document.createElement("button");
+        btnDisplayEditTodo.classList.add("bg-blue", "light", "bold", "rounded-5", "px-5", "py-5");
+        btnDisplayEditTodo.textContent = "Edit";
+        todoSummaryButtons.appendChild(btnDisplayEditTodo);
+
+        btnDisplayEditTodo.addEventListener("click", () => {
+            todoItem.open = true;
+            formEditTodo.classList.remove("hidden");
+            inputTodoTitle.removeAttribute("readonly");
+            textAreaTodoDescription.removeAttribute("readonly");
+            inputDueDate.removeAttribute("readonly");
+            selectPriority.disabled = false;
+            divSumbitButtons.classList.remove("hidden");
+        })
 
         let btnDeleteTodo = document.createElement("button");
         btnDeleteTodo.classList.add("bg-red", "light", "bold", "rounded-5", "px-5", "py-5");
         btnDeleteTodo.textContent = "Delete";
+
+        btnDeleteTodo.addEventListener("click", () => {
+            this.#_project.removeTodo(todo.id)
+            parent.removeChild(todoItem);
+            // if (this.#_project.todolist.length === 0) {
+            //     parent.classList.remove("border-light", "rounded-5");
+            // }
+        })
+
         todoSummaryButtons.appendChild(btnDeleteTodo);
 
         let todoDetails = document.createElement("div");
-        todoDetails.textContent = todo.description;
+        todoDetails.appendChild(formEditTodo);
 
         todoSummary.appendChild(todoSummaryButtons);
         todoItem.appendChild(todoSummary);
