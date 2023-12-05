@@ -251,7 +251,8 @@ export default class ProjectComponent {
                 let newTodo = new Todo(this.#_project.id, inputTodoTitle.value, textAreaTodoDescription.value, format(parseISO(inputDueDate.value), DATE_FORMAT), selectPriority.value);
                 this.#_project.todolist.push(newTodo);
                 btnCancelAddTodo.click();
-                this.#appendTodo(newTodo);
+                const todosDiv = document.querySelector(".project-todos");
+                this.#appendTodo(todosDiv, newTodo);
             }
         })
 
@@ -261,32 +262,45 @@ export default class ProjectComponent {
     }
 
     #createTodosDiv() {
-        const todoDiv = document.createElement("div");
-        todoDiv.classList.add("project-todos", "flex", "flex-col");
+        const todosDiv = document.createElement("div");
+        todosDiv.classList.add("project-todos", "flex", "flex-col");
 
         this.#_project.todolist.forEach(todo => {
-            let todoItem = document.createElement("div");
-            todoItem.setAttribute("data-id", todo.id);
-            todoItem.classList.add("todo-item", "flex", "justified-between", "aligned-center", "gap-10", "bold");
-            todoItem.textContent = todo.title;
-            todoDiv.appendChild(todoItem);
+            this.#appendTodo(todosDiv, todo);
         });
 
-        if (this.#_project.todolist.length > 0) {
-            todoDiv.classList.add("border-light");
-        }
-
-        return todoDiv;
+        return todosDiv;
     }
 
-    #appendTodo(todo) {
-        const todosDiv = document.querySelector(".project-todos");
-        todosDiv.classList.add("border-light");
-        let todoItem = document.createElement("div");
+    #appendTodo(parent, todo) {
+        parent.classList.add("border-light", "rounded-5");
+        let todoItem = document.createElement("details");
         todoItem.setAttribute("data-id", todo.id);
         todoItem.classList.add("todo-item", "flex", "justified-between", "aligned-center", "gap-10", "bold");
-        todoItem.textContent = todo.title;
-        todosDiv.appendChild(todoItem);
+        let todoSummary = document.createElement("summary");
+        todoSummary.classList.add("flex", "justified-between", "aligned-center");
+        todoSummary.textContent = todo.title;
+
+        let todoSummaryButtons = document.createElement("div")
+        todoSummaryButtons.classList.add("flex", "gap-5");
+
+        let btnEditTodo = document.createElement("button");
+        btnEditTodo.classList.add("bg-blue", "light", "bold", "rounded-5", "px-5", "py-5");
+        btnEditTodo.textContent = "Edit";
+        todoSummaryButtons.appendChild(btnEditTodo);
+
+        let btnDeleteTodo = document.createElement("button");
+        btnDeleteTodo.classList.add("bg-red", "light", "bold", "rounded-5", "px-5", "py-5");
+        btnDeleteTodo.textContent = "Delete";
+        todoSummaryButtons.appendChild(btnDeleteTodo);
+
+        let todoDetails = document.createElement("div");
+        todoDetails.textContent = todo.description;
+
+        todoSummary.appendChild(todoSummaryButtons);
+        todoItem.appendChild(todoSummary);
+        todoItem.appendChild(todoDetails);
+        parent.appendChild(todoItem);
     }
 
     // #createNameSection() {
