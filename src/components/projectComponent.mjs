@@ -279,8 +279,9 @@ export default class ProjectComponent {
         todoItem.classList.add("todo-item", "flex", "justified-between", "aligned-center", "gap-10", "bold", "border-jet-black", "rounded-5");
         let todoSummary = document.createElement("summary");
         todoSummary.classList.add("flex", "justified-between", "aligned-center");
-        todoSummary.textContent = todo.title;
-
+        let todoSummaryContent = document.createElement("span");
+        todoSummaryContent.textContent = todo.title;
+        todoSummary.appendChild(todoSummaryContent);
         // Edit Todo Form
         const formEditTodo = document.createElement("form");
         formEditTodo.classList.add("edit-todo-form");
@@ -370,7 +371,18 @@ export default class ProjectComponent {
                 // btnCancelAddTodo.click();
                 // const todosDiv = document.querySelector(".project-todos");
                 // this.#appendTodo(todosDiv, newTodo);
-                console.log("Should edit todo");
+
+                // TODO edit actual todo instance with modified content
+                todo.title = inputTodoTitle.value;
+                todo.description = textAreaTodoDescription.value;
+                todo.dueDate = format(parseISO(inputDueDate.value), DATE_FORMAT);
+                todo.priority = selectPriority.value;
+                todoSummaryContent.textContent = todo.title;
+                inputTodoTitle.setAttribute("readonly", true);
+                textAreaTodoDescription.setAttribute("readonly", true);
+                inputDueDate.setAttribute("readonly", true);
+                selectPriority.disabled = true;
+                todoItem.open = false;
             }
         })
         // End Edit Todo Form
